@@ -1,0 +1,35 @@
+.home-categories {
+  margin: 5rem 1rem 10rem 1rem;
+  padding-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+.category-card {
+  width: 25rem;
+  height: 20rem;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--black);
+  color: var(--white);
+  /* TODO:
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.category-card:hover {
+  outline: 5px solid var(--secondary);
+}
+
+.category-text-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  font-size: 3rem;
+  backdrop-filter: blur(10px);
+}
