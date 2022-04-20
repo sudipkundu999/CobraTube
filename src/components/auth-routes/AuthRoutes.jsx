@@ -10,5 +10,5 @@ export const AuthRoutes = () => {
     []
   );
 
-  return isUserLoggedIn ? <Navigate to="/products" replace /> : <Outlet />;
+  return isUserLoggedIn ? <Navigate to="/" replace /> : <Outlet />;
 };
