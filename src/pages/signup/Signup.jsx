@@ -41,7 +41,7 @@ export const Signup = () => {
             <input
               className="email"
               type="email"
-              placeholder="sk@cobrastore.com"
+              placeholder="sk@cobratube.com"
               value={formData.email}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, email: e.target.value }))

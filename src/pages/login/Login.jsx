@@ -18,7 +18,7 @@ export const Login = () => {
               className="email"
               type="email"
               id="login-email"
-              placeholder="user@cobrastore.com"
+              placeholder="user@cobratube.com"
               value={formData.email}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
