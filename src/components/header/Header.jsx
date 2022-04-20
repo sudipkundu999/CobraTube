@@ -15,6 +15,7 @@ export const Header = () => {
           //   value={}
           type="text"
           placeholder="Search"
+          aria-label="Search"
           className="nav-search search-desktop"
           //   onChange={(e) =>}
         />
