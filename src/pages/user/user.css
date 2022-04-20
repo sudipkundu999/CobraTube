@@ -56,8 +56,12 @@
   position: relative;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 520px) {
   .profile-details {
     font-size: 1.75rem;
+  }
+
+  .list-content {
+    padding-inline-start: 1rem;
   }
 }
