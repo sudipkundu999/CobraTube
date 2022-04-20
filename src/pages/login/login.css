@@ -1,0 +1,41 @@
+.login-signup-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-signup-main input {
+  display: block;
+  width: 100%;
+}
+
+.login-container {
+  color: black;
+}
+
+#login-remember-me {
+  width: auto;
+  display: inline;
+  margin-right: 5px;
+}
+
+.admin-login {
+  margin-left: auto;
+  padding: 0;
+  color: var(--primary);
+}
+
+@media screen and (max-width: 500px) {
+  .login-signup-main {
+    align-items: flex-start;
+  }
+
+  .login-container {
+    margin-block-start: 5rem;
+    width: 30rem;
+  }
+
+  .login-form {
+    width: 25rem;
+  }
+}

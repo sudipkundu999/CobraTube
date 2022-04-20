@@ -33,6 +33,10 @@
   margin-top: 2rem;
 }
 
+.btn-hero:hover {
+  outline: 2px solid var(--nav-hover);
+}
+
 @media screen and (min-width: 1400px) {
   .hero-section {
     height: 28rem;

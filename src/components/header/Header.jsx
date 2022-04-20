@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts";
 import "./header.css";
 
 export const Header = () => {
-  const isUserLoggedIn = true;
-  const userName = "Sudip";
+  const { isUserLoggedIn, userName, logoutHandler } = useAuth();
 
   return (
     <header>
@@ -21,10 +21,7 @@ export const Header = () => {
         />
         <div className="nav-right">
           {isUserLoggedIn && (
-            <button
-              className="btn btn-secondary"
-              // onClick={logoutHandler}
-            >
+            <button className="btn btn-secondary" onClick={logoutHandler}>
               Logout
             </button>
           )}

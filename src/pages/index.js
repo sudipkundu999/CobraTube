@@ -4,3 +4,7 @@ export { Liked } from "./liked/Liked";
 export { WatchLater } from "./watchlater/WatchLater";
 export { Playlist } from "./playlist/Playlist";
 export { History } from "./history/History";
+export { Login } from "./login/Login";
+export { Signup } from "./signup/Signup";
+export { User } from "./user/User";
+export { Page404 } from "./page404/Page404";

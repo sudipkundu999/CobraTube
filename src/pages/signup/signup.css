@@ -1,0 +1,10 @@
+.signup-text-input {
+  height: 3.25rem;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--black);
+}
+
+.signup-container {
+  height: auto;
+}
