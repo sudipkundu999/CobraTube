@@ -1,0 +1,47 @@
+aside {
+  height: calc(100vh - 6rem);
+  position: sticky;
+  top: 0px;
+  width: 20vw;
+  max-width: fit-content;
+  background-color: var(--black);
+}
+
+aside a span {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-inline: 2rem;
+}
+
+aside a {
+  display: flex;
+  padding-inline: 2rem;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+}
+
+aside a:hover {
+  color: var(--nav-hover);
+}
+
+.active-nav {
+  background-color: #213044;
+}
+
+@media screen and (max-width: 1400px) {
+  aside a span {
+    display: none;
+  }
+
+  aside a {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  aside {
+    height: calc(100vh - 10.5rem);
+  }
+}
