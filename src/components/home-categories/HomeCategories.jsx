@@ -1,11 +1,9 @@
+import { useVideos } from "../../contexts";
 import "./home-categories.css";
+
 export const HomeCategories = () => {
-  const categoriesFromDB = [
-    "Fiction",
-    "Poetry",
-    "Educational",
-    "Life Changing",
-  ];
+  const { categoriesFromDB } = useVideos();
+
   return (
     <div className="home-categories">
       {categoriesFromDB.map((category, index) => (
