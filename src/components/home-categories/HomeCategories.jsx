@@ -1,9 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useVideos } from "../../contexts";
 import "./home-categories.css";
 
 export const HomeCategories = () => {
-  const { categoriesFromDB } = useVideos();
-
+  const { categoriesFromDB, setFilterBy } = useVideos();
+  const navigate = useNavigate();
   return (
     <div className="home-categories">
       {categoriesFromDB.map((category, index) => (
@@ -15,9 +16,17 @@ export const HomeCategories = () => {
               process.env.PUBLIC_URL + "/images/categoryImage.jpg"
             })`,
           }}
-          //   onClick={() => {}}
         >
-          <div className="category-text-wrapper">{category}</div>
+          <div
+            className="category-text-wrapper"
+            onClick={(e) => {
+              setFilterBy((prev) => ({ ...prev, chips: e.target.innerText }));
+              navigate("/videos");
+              window.scroll(0, 0);
+            }}
+          >
+            {category}
+          </div>
         </div>
       ))}
     </div>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useVideos } from "../../contexts";
 import "./home-hero.css";
 export const HomeHero = () => {
+  const { setFilterBy } = useVideos();
   return (
     <div
       className="hero-section"
@@ -19,7 +21,9 @@ export const HomeHero = () => {
         <button className="btn btn-hero">
           <Link
             to="/videos"
-            // onClick={() => }
+            onClick={() => {
+              setFilterBy((prev) => ({ ...prev, chips: "All" }));
+            }}
           >
             SHOW VIDEOS
           </Link>

@@ -40,12 +40,31 @@ const VideoProvider = ({ children }) => {
     setCategoriesFromDB((prev) => prev.map((obj) => obj.categoryName));
   }, [responseCategory]);
 
+  //Filter videos based on chips selected
+  const [filterBy, setFilterBy] = useState({ chips: "All", search: "" });
+  const videosToShow = videosFromDB
+    .filter((video) =>
+      filterBy.chips === "All" ? true : video.videoCategory === filterBy.chips
+    )
+    .filter(
+      (video) =>
+        video.videoTitle
+          .toUpperCase()
+          .includes(filterBy.search.trim().toUpperCase()) ||
+        video.creatorName
+          .toUpperCase()
+          .includes(filterBy.search.trim().toUpperCase())
+    );
+
   return (
     <VideoContext.Provider
       value={{
         videosFromDB,
         loadingVideos,
         categoriesFromDB,
+        videosToShow,
+        setFilterBy,
+        filterBy,
       }}
     >
       {children}

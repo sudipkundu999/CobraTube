@@ -1,8 +1,12 @@
 @import url("https://cobra-ui.netlify.app/public/light-theme.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
 
+:root {
+  --background-dark: #162538;
+}
+
 body {
-  background-color: #162538;
+  background-color: var(--background-dark);
   color: white;
 }
 
