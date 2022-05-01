@@ -20,10 +20,10 @@ function App() {
   return (
     <div>
       <Header />
+      <Sidebar />
       <ToastContainer theme="dark" />
 
       <div className="app">
-        <Sidebar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route element={<AuthRoutes />}>

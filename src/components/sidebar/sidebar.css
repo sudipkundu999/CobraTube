@@ -1,7 +1,8 @@
 aside {
   height: calc(100vh - 6rem);
-  position: sticky;
-  top: 0;
+  z-index: 5;
+  position: fixed;
+  top: 6rem;
   width: 20vw;
   max-width: fit-content;
   background-color: var(--black);
@@ -43,5 +44,6 @@ aside a:hover {
 @media screen and (max-width: 680px) {
   aside {
     height: calc(100vh - 10.5rem);
+    top: 10.5rem;
   }
 }
