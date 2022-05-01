@@ -1,0 +1,127 @@
+.video-card {
+  width: 30rem;
+  min-height: 24rem;
+  height: fit-content;
+  background-color: var(--primary);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-card:hover {
+  outline: 3px solid var(--secondary);
+}
+
+.img-fluid {
+  object-fit: cover;
+}
+
+.video-thumbnail-image {
+  height: 16rem;
+  cursor: pointer;
+}
+
+.video-info {
+  display: flex;
+  padding: 0 5px 5px 10px;
+}
+
+.creator-thumbnail-image {
+  height: 5rem;
+  border-radius: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.name-wrapper {
+  padding-left: 1rem;
+  margin-right: auto;
+}
+
+.video-title {
+  cursor: pointer;
+  font-size: 1.7rem;
+}
+
+.creator-name {
+  font-size: 1.4rem;
+  padding: 5px 0;
+}
+
+.card-menu-btn {
+  border-radius: 50%;
+  height: 30px;
+  cursor: pointer;
+}
+
+.card-menu-btn:hover {
+  background-color: var(--background-dark);
+}
+
+.video-length {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 1.4rem;
+}
+
+.card-menu {
+  position: absolute;
+  bottom: 2px;
+  right: 3.5rem;
+  font-size: 1.4rem;
+  z-index: 2;
+  background-color: var(--background-dark);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.playlist,
+.watch-later {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.watch-later-remove,
+.watch-later-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.playlist {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.watch-later {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: 1px solid var(--primary);
+}
+
+.playlist:hover,
+.watch-later:hover {
+  background-color: var(--primary);
+}
+
+.like-btn {
+  position: absolute;
+  right: 5rem;
+  bottom: -2px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .video-card {
+    width: 32.5rem;
+  }
+
+  .card-menu {
+    bottom: 2px;
+  }
+}

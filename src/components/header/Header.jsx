@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { useAuth, useVideos } from "../../contexts";
 import "./header.css";
 
 export const Header = () => {
   const { isUserLoggedIn, userName, logoutHandler } = useAuth();
+  const { setFilterBy, filterBy } = useVideos();
 
   return (
     <header>
@@ -12,12 +13,14 @@ export const Header = () => {
           <h2>CobraTube</h2>
         </Link>
         <input
-          //   value={}
+          value={filterBy.search}
           type="text"
           placeholder="Search"
           aria-label="Search"
           className="nav-search search-desktop"
-          //   onChange={(e) =>}
+          onChange={(e) =>
+            setFilterBy((prev) => ({ ...prev, search: e.target.value }))
+          }
         />
         <div className="nav-right">
           {isUserLoggedIn && (
@@ -32,11 +35,13 @@ export const Header = () => {
         </div>
       </div>
       <input
-        // value={}
+        value={filterBy.search}
         type="text"
         placeholder="Search"
         className="nav-search search-mobile"
-        // onChange={(e) =>}
+        onChange={(e) =>
+          setFilterBy((prev) => ({ ...prev, search: e.target.value }))
+        }
       />
     </header>
   );
