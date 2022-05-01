@@ -8,9 +8,9 @@ aside {
 }
 
 aside a span {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 500;
-  margin-inline: 2rem;
+  margin-inline: 1rem;
 }
 
 aside a {
@@ -30,7 +30,7 @@ aside a:hover {
   background-color: #213044;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1330px) {
   aside a span {
     display: none;
   }

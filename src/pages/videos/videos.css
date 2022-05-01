@@ -27,11 +27,17 @@
   padding: 1rem 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 500px) {
   .videos-main {
     padding-right: 0;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .videos-display-wrapper {
+    gap: 1.5rem;
   }
 }

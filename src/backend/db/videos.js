@@ -84,7 +84,7 @@ export const videos = [
     videoViews: "12.7K",
     videoDescription:
       "In this lyrical, exuberant follow-up to her 2007 novel, The Bastard of Istanbul, acclaimed Turkish author Elif Shafak unfolds two tantalizing parallel narratives—one contemporary and the other set in the thirteenth century, when Rumi encountered his spiritual mentor, the whirling dervish known as Shams of Tabriz—that together incarnate the poet's timeless message of love.",
-    creatorName: "Academy of knowledge",
+    creatorName: "Knowledge Academy",
     creatorThumbnail:
       "https://yt3.ggpht.com/ytc/AKedOLSeZHn8Y8xYSZ43vBMRcB6Xa17Y8x2Xt_Gg3ZSr=s48-c-k-c0x00ffffff-no-rj",
   },
