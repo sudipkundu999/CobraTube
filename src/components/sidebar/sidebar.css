@@ -41,6 +41,12 @@ aside a:hover {
   }
 }
 
+@media screen and (min-width: 1330px) {
+  main {
+    padding-left: 21rem !important;
+  }
+}
+
 @media screen and (max-width: 680px) {
   aside {
     height: calc(100vh - 10.5rem);
