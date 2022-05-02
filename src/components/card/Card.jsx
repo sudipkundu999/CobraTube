@@ -8,7 +8,7 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { useLike } from "../../contexts/like-context";
-import { useHistory, useWatchlater } from "../../contexts";
+import { useHistory, usePlaylist, useWatchlater } from "../../contexts";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -30,6 +30,8 @@ export const Card = ({ video }) => {
   };
 
   const location = useLocation();
+
+  const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
 
   return (
     <div className="video-card">
@@ -97,7 +99,13 @@ export const Card = ({ video }) => {
               </div>
             )}
           </div>
-          <div className="playlist">
+          <div
+            className="playlist"
+            onClick={() => {
+              setIsPopupVisible(true);
+              setSelectedVideo(video);
+            }}
+          >
             <IcBaselinePlaylistAdd />
             Save to Playlist
           </div>

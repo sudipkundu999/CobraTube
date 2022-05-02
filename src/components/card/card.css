@@ -123,6 +123,11 @@
 .remove-from-history-btn {
   color: var(--danger);
   cursor: pointer;
+  height: max-content;
+}
+
+.remove-from-history-btn:hover {
+  color: var(--red-bg);
 }
 
 @media screen and (max-width: 500px) {

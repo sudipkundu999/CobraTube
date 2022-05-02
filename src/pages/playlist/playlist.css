@@ -1,0 +1,55 @@
+.playlist-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.playlist-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem 2rem;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  margin-bottom: 5rem;
+  min-width: 30.2rem;
+}
+
+.playlist-wrapper .videos-display-wrapper {
+  justify-content: center;
+}
+
+.playlist-name {
+  position: relative;
+}
+
+.delete-playlist-btn {
+  position: absolute;
+  bottom: -2px;
+  right: -4rem;
+  cursor: pointer;
+  height: max-content;
+  color: var(--danger);
+}
+
+.delete-playlist-btn:hover {
+  color: var(--red);
+}
+
+.empty-playlist-text {
+  font-size: 2.25rem;
+}
+
+.empty-playlist-text a {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 500px) {
+  .playlist-wrapper {
+    padding: 2rem 5px;
+  }
+}
