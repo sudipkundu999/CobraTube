@@ -4,11 +4,13 @@ import {
   LikeBtn,
   LikeBtnFilled,
   MdiDotsVertical,
+  MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { useLike } from "../../contexts/like-context";
-import { useWatchlater } from "../../contexts";
+import { useHistory, usePlaylist, useWatchlater } from "../../contexts";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const Card = ({ video }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -22,12 +24,22 @@ export const Card = ({ video }) => {
   const { likesToShow, addToLike, removeFromLike } = useLike();
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
+  const { addToHistory, removeFromHistory } = useHistory();
+  const cardClickHandler = (video) => {
+    addToHistory(video);
+  };
+
+  const location = useLocation();
+
+  const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
+
   return (
     <div className="video-card">
       <img
         className="img-fluid video-thumbnail-image"
         src={`https://i.ytimg.com/vi/${video._id}/hqdefault.jpg`}
         alt={video.videoTitle}
+        onClick={() => cardClickHandler(video)}
       />
       <div className="video-info">
         <img
@@ -39,13 +51,19 @@ export const Card = ({ video }) => {
           <div className="video-title">{video.videoTitle}</div>
           <div className="creator-name">{video.creatorName}</div>
         </div>
-        <div
-          className="card-menu-btn"
-          onMouseEnter={() => setIsMenuVisible(true)}
-          onMouseLeave={() => setIsMenuVisible(false)}
-        >
-          <MdiDotsVertical />
-        </div>
+        {location.pathname === "/history" ? (
+          <div className="remove-from-history-btn">
+            <MdiTrashCan onClick={() => removeFromHistory(video)} />
+          </div>
+        ) : (
+          <div
+            className="card-menu-btn"
+            onMouseEnter={() => setIsMenuVisible(true)}
+            onMouseLeave={() => setIsMenuVisible(false)}
+          >
+            <MdiDotsVertical />
+          </div>
+        )}
         <div className="video-length">{video.videoLength}</div>
         <div className="like-btn">
           {isLikedVideo !== -1 ? (
@@ -81,9 +99,15 @@ export const Card = ({ video }) => {
               </div>
             )}
           </div>
-          <div className="playlist">
+          <div
+            className="playlist"
+            onClick={() => {
+              setIsPopupVisible(true);
+              setSelectedVideo(video);
+            }}
+          >
             <IcBaselinePlaylistAdd />
-            "Save to Playlist"
+            Save to Playlist
           </div>
         </div>
       )}

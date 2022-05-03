@@ -93,6 +93,10 @@
   gap: 1rem;
 }
 
+.watch-later-remove {
+  color: var(--danger);
+}
+
 .playlist {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -111,9 +115,19 @@
 
 .like-btn {
   position: absolute;
-  right: 5rem;
+  right: 5.1rem;
   bottom: -2px;
   cursor: pointer;
+}
+
+.remove-from-history-btn {
+  color: var(--danger);
+  cursor: pointer;
+  height: max-content;
+}
+
+.remove-from-history-btn:hover {
+  color: var(--red-bg);
 }
 
 @media screen and (max-width: 500px) {
@@ -123,5 +137,24 @@
 
   .card-menu {
     bottom: 2px;
+  }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 500px) {
+  .video-card {
+    width: 26rem;
+    min-height: 23rem;
+  }
+
+  .video-thumbnail-image {
+    height: 14rem;
+    cursor: pointer;
+  }
+
+  .video-title {
+    font-size: 1.5rem;
+  }
+  .creator-name {
+    font-size: 1.25rem;
   }
 }

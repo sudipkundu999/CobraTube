@@ -38,7 +38,9 @@ export const signupHandler = function (schema, request) {
       ...rest,
       likes: [],
       history: [],
-      playlists: [],
+      playlists: [
+        { description: "", title: "My Playlist", videos: [], _id: uuid() },
+      ],
       watchlater: [],
     };
     const createdUser = schema.users.create(newUser);

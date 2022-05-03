@@ -13,3 +13,17 @@ body {
 .app {
   display: flex;
 }
+
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: inherit;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border: 1px solid slategrey;
+  border-radius: 10px;
+}

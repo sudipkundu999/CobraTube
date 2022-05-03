@@ -39,6 +39,7 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
+import { v4 as uuid } from "uuid";
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -69,7 +70,9 @@ export function makeServer({ environment = "development" } = {}) {
           likes: [],
           watchlater: [],
           history: [],
-          playlists: [],
+          playlists: [
+            { description: "", title: "My Playlist", videos: [], _id: uuid() },
+          ],
         })
       );
     },

@@ -1,11 +1,15 @@
 header {
   height: 6rem;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 main {
   height: calc(100vh - 6rem);
   width: 100%;
-  padding: 2rem;
+  padding: 7rem 1rem 1rem 7rem;
   font-size: 3rem;
 }
 
@@ -53,6 +57,7 @@ main {
 
   main {
     height: calc(100vh - 10.5rem);
+    padding: 11.5rem 1rem 1rem 7rem;
   }
 
   .search-desktop {

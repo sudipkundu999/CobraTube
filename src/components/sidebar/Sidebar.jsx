@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import {
   BxBxsVideos,
   BxHome,
@@ -9,6 +10,9 @@ import {
 } from "../../assets/icons/Icons";
 import "./sidebar.css";
 export const Sidebar = () => {
+  const location = useLocation();
+  useEffect(() => window.scroll(0, 0), [location.pathname]);
+
   return (
     <aside>
       <NavLink

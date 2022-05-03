@@ -2,7 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./toastify.css";
-import { Sidebar, Header, AuthRoutes, RequiresAuth } from "./components";
+import {
+  Sidebar,
+  Header,
+  AuthRoutes,
+  RequiresAuth,
+  PlaylistPopup,
+} from "./components";
 import {
   History,
   Homepage,
@@ -20,10 +26,11 @@ function App() {
   return (
     <div>
       <Header />
+      <Sidebar />
+      <PlaylistPopup />
       <ToastContainer theme="dark" />
 
       <div className="app">
-        <Sidebar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route element={<AuthRoutes />}>
