@@ -8,9 +8,15 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { useLike } from "../../contexts/like-context";
-import { useHistory, usePlaylist, useWatchlater } from "../../contexts";
+import {
+  useAuth,
+  useHistory,
+  usePlaylist,
+  useWatchlater,
+} from "../../contexts";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { notifyDefault } from "../../utils";
 
 export const Card = ({ video }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -34,6 +40,15 @@ export const Card = ({ video }) => {
   const location = useLocation();
 
   const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
+
+  const { isUserLoggedIn } = useAuth();
+  const notLoggedInHandler = () => {
+    navigate("/login", {
+      state: { from: location },
+      replace: true,
+    });
+    notifyDefault("Please Login to continue");
+  };
 
   return (
     <div className="video-card">
@@ -73,7 +88,11 @@ export const Card = ({ video }) => {
           {isLikedVideo !== -1 ? (
             <LikeBtnFilled onClick={() => removeFromLike(video)} />
           ) : (
-            <LikeBtn onClick={() => addToLike(video)} />
+            <LikeBtn
+              onClick={() =>
+                isUserLoggedIn ? addToLike(video) : notLoggedInHandler()
+              }
+            />
           )}
         </div>
       </div>
@@ -96,7 +115,9 @@ export const Card = ({ video }) => {
             ) : (
               <div
                 className="watch-later-add"
-                onClick={() => addToWatchlater(video)}
+                onClick={() =>
+                  isUserLoggedIn ? addToWatchlater(video) : notLoggedInHandler()
+                }
               >
                 <WatchLaterIcon />
                 Add to Watch Later
@@ -106,8 +127,12 @@ export const Card = ({ video }) => {
           <div
             className="playlist"
             onClick={() => {
-              setIsPopupVisible(true);
-              setSelectedVideo(video);
+              if (isUserLoggedIn) {
+                setIsPopupVisible(true);
+                setSelectedVideo(video);
+              } else {
+                notLoggedInHandler();
+              }
             }}
           >
             <IcBaselinePlaylistAdd />

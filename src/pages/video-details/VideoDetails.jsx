@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   IcBaselinePlaylistAdd,
   LikeBtn,
@@ -6,8 +6,14 @@ import {
   MdiShare,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import { useLike, usePlaylist, useVideos, useWatchlater } from "../../contexts";
-import { notifySuccess } from "../../utils";
+import {
+  useAuth,
+  useLike,
+  usePlaylist,
+  useVideos,
+  useWatchlater,
+} from "../../contexts";
+import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
 export const VideoDetails = () => {
@@ -26,12 +32,24 @@ export const VideoDetails = () => {
 
   const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isUserLoggedIn } = useAuth();
+  const notLoggedInHandler = () => {
+    navigate("/login", {
+      state: { from: location },
+      replace: true,
+    });
+    notifyDefault("Please Login to continue");
+  };
+
   return (
     <main className="video-details-main">
       <div className="iframe-max-width">
         <div className="iframe-wrapper">
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${videosId}?autoplay=1&mute=1&rel=0&modestbranding=1`}
+            src={`https://www.youtube-nocookie.com/embed/${videosId}?rel=0&modestbranding=1`}
+            // autoplay=1&mute=1&
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -57,7 +75,11 @@ export const VideoDetails = () => {
                   {isLikedVideo !== -1 ? (
                     <LikeBtnFilled onClick={() => removeFromLike(video)} />
                   ) : (
-                    <LikeBtn onClick={() => addToLike(video)} />
+                    <LikeBtn
+                      onClick={() =>
+                        isUserLoggedIn ? addToLike(video) : notLoggedInHandler()
+                      }
+                    />
                   )}
                 </div>
                 <div>
@@ -69,15 +91,25 @@ export const VideoDetails = () => {
                       <WatchLaterIcon />
                     </div>
                   ) : (
-                    <div onClick={() => addToWatchlater(video)}>
+                    <div
+                      onClick={() =>
+                        isUserLoggedIn
+                          ? addToWatchlater(video)
+                          : notLoggedInHandler()
+                      }
+                    >
                       <WatchLaterIcon />
                     </div>
                   )}
                 </div>
                 <div
                   onClick={() => {
-                    setIsPopupVisible(true);
-                    setSelectedVideo(video);
+                    if (isUserLoggedIn) {
+                      setIsPopupVisible(true);
+                      setSelectedVideo(video);
+                    } else {
+                      notLoggedInHandler();
+                    }
                   }}
                 >
                   <IcBaselinePlaylistAdd />
