@@ -31,7 +31,7 @@ aside a:hover {
   background-color: #213044;
 }
 
-@media screen and (max-width: 1330px) {
+@media screen and (max-width: 1329px) {
   aside a span {
     display: none;
   }

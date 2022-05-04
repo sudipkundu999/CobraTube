@@ -18,6 +18,7 @@ import {
   Playlist,
   Signup,
   User,
+  VideoDetails,
   Videos,
   WatchLater,
 } from "./pages";
@@ -45,7 +46,7 @@ function App() {
             <Route path="/history" element={<History />} />
           </Route>
           <Route path="/videos" element={<Videos />} />
-          {/* <Route path="/videos/:videosId" element={<VideoDetails />} /> */}
+          <Route path="/videos/:videosId" element={<VideoDetails />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>

@@ -14,15 +14,18 @@ body {
   display: flex;
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.more-videos-wrapper::-webkit-scrollbar {
   width: 7px;
 }
 
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track,
+.more-videos-wrapper::-webkit-scrollbar-track {
   background-color: inherit;
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,
+.more-videos-wrapper::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border: 1px solid slategrey;
   border-radius: 10px;
