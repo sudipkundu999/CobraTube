@@ -8,3 +8,4 @@ export { Login } from "./login/Login";
 export { Signup } from "./signup/Signup";
 export { User } from "./user/User";
 export { Page404 } from "./page404/Page404";
+export { VideoDetails } from "./video-details/VideoDetails";

@@ -10,7 +10,7 @@ import {
 import { useLike } from "../../contexts/like-context";
 import { useHistory, usePlaylist, useWatchlater } from "../../contexts";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Card = ({ video }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -25,8 +25,10 @@ export const Card = ({ video }) => {
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
   const { addToHistory, removeFromHistory } = useHistory();
+  const navigate = useNavigate();
   const cardClickHandler = (video) => {
     addToHistory(video);
+    navigate(`/videos/${video._id}`);
   };
 
   const location = useLocation();
@@ -48,7 +50,9 @@ export const Card = ({ video }) => {
           alt={video.creatorName}
         />
         <div className="name-wrapper">
-          <div className="video-title">{video.videoTitle}</div>
+          <div className="video-title" onClick={() => cardClickHandler(video)}>
+            {video.videoTitle}
+          </div>
           <div className="creator-name">{video.creatorName}</div>
         </div>
         {location.pathname === "/history" ? (
