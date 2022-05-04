@@ -6,6 +6,7 @@ import {
   MdiShare,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
+import { Card } from "../../components/card/Card";
 import {
   useAuth,
   useLike,
@@ -122,6 +123,14 @@ export const VideoDetails = () => {
             <div className="video-description">{video.videoDescription}</div>
           </div>
         )}
+      </div>
+      <div className="more-videos-wrapper">
+        <div className="more-videos-heading">More Videos</div>
+        {videosFromDB
+          .filter((video) => video._id !== videosId)
+          .map((video) => (
+            <Card video={video} key={video._id} />
+          ))}
       </div>
     </main>
   );
