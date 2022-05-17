@@ -1,5 +1,7 @@
 .videos-main {
-  padding: 11rem 1rem 1rem 7rem;
+  padding: 6rem 1rem 1rem 7rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .chips-container {
@@ -8,11 +10,8 @@
   gap: 1rem;
   padding: 1rem 0 1rem 0;
   border-bottom: 1px solid var(--primary);
-  position: fixed;
-  top: 6rem;
   width: 100%;
   background: var(--background-dark);
-  z-index: 5;
 }
 
 .category {
@@ -39,20 +38,9 @@
   gap: 1rem;
 }
 
-@media screen and (max-width: 550px) {
-  .videos-main {
-    padding-right: 0;
-    padding: 19.5rem 1rem 1rem 7rem !important;
-  }
-}
-
 @media screen and (max-width: 680px) {
-  .chips-container {
-    top: 10.5rem;
-  }
-
   .videos-main {
-    padding: 15.5rem 1rem 1rem 7rem;
+    padding: 10.5rem 1rem 1rem 7rem;
   }
 }
 

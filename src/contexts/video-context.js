@@ -42,19 +42,9 @@ const VideoProvider = ({ children }) => {
 
   //Filter videos based on chips selected
   const [filterBy, setFilterBy] = useState({ chips: "All", search: "" });
-  const videosToShow = videosFromDB
-    .filter((video) =>
-      filterBy.chips === "All" ? true : video.videoCategory === filterBy.chips
-    )
-    .filter(
-      (video) =>
-        video.videoTitle
-          .toUpperCase()
-          .includes(filterBy.search.trim().toUpperCase()) ||
-        video.creatorName
-          .toUpperCase()
-          .includes(filterBy.search.trim().toUpperCase())
-    );
+  const videosToShow = videosFromDB.filter((video) =>
+    filterBy.chips === "All" ? true : video.videoCategory === filterBy.chips
+  );
 
   return (
     <VideoContext.Provider

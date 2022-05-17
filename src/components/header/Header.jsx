@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useVideos } from "../../contexts";
+import Select from "react-select";
 import "./header.css";
 
 export const Header = () => {
   const { isUserLoggedIn, userName, logoutHandler } = useAuth();
-  const { setFilterBy, filterBy } = useVideos();
+  const { videosFromDB } = useVideos();
+
+  const navigate = useNavigate();
+  const searchOptions = videosFromDB.map((item) => ({
+    ...item,
+    label: item.videoTitle,
+  }));
 
   return (
     <header>
@@ -12,16 +19,16 @@ export const Header = () => {
         <Link to="/">
           <h2>CobraTube</h2>
         </Link>
-        <input
-          value={filterBy.search}
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-          className="nav-search search-desktop"
-          onChange={(e) =>
-            setFilterBy((prev) => ({ ...prev, search: e.target.value }))
-          }
-        />
+        <div className="nav-search search-desktop search-wrapper">
+          <Select
+            options={searchOptions}
+            isClearable="true"
+            placeholder="Search"
+            onChange={(opt) =>
+              opt && navigate(`/videos/${opt?._id}`, { replace: true })
+            }
+          />
+        </div>
         <div className="nav-right">
           {isUserLoggedIn && (
             <button className="btn btn-secondary" onClick={logoutHandler}>
@@ -34,15 +41,16 @@ export const Header = () => {
           </Link>
         </div>
       </div>
-      <input
-        value={filterBy.search}
-        type="text"
-        placeholder="Search"
-        className="nav-search search-mobile"
-        onChange={(e) =>
-          setFilterBy((prev) => ({ ...prev, search: e.target.value }))
-        }
-      />
+      <div className="nav-search search-mobile search-wrapper">
+        <Select
+          options={searchOptions}
+          isClearable="true"
+          placeholder="Search"
+          onChange={(opt) =>
+            opt && navigate(`/videos/${opt?._id}`, { replace: true })
+          }
+        />
+      </div>
     </header>
   );
 };
