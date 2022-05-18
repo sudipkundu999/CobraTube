@@ -41,10 +41,21 @@ const VideoProvider = ({ children }) => {
   }, [responseCategory]);
 
   //Filter videos based on chips selected
-  const [filterBy, setFilterBy] = useState({ chips: "All", search: "" });
-  const videosToShow = videosFromDB.filter((video) =>
-    filterBy.chips === "All" ? true : video.videoCategory === filterBy.chips
-  );
+  const [filterBy, setFilterBy] = useState({ chips: "All", date: "" });
+  const videosToShow = videosFromDB
+    .filter((video) =>
+      filterBy.chips === "All" ? true : video.videoCategory === filterBy.chips
+    )
+    .sort((a, b) => {
+      const { day: aDD, month: aMM, year: aYYYY } = a.videoUploadedOn;
+      const { day: bDD, month: bMM, year: bYYYY } = b.videoUploadedOn;
+      const difference = new Date(aYYYY, aMM, aDD) - new Date(bYYYY, bMM, bDD);
+      if (filterBy.date === "Oldest to newest") {
+        return difference;
+      } else if (filterBy.date === "Newest to Oldest") {
+        return -difference;
+      }
+    });
 
   return (
     <VideoContext.Provider

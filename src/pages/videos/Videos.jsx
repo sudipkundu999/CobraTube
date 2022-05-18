@@ -6,12 +6,13 @@ import "./videos.css";
 export const Videos = () => {
   useDocumentTitle("Videos");
   const { videosToShow, categoriesFromDB, setFilterBy, filterBy } = useVideos();
-  const chips = ["All", ...categoriesFromDB];
+  const categoryChips = ["All", ...categoriesFromDB];
+  const dateChips = ["Newest to Oldest", "Oldest to newest"];
 
   return (
     <main className="videos-main">
       <div className="chips-container">
-        {chips.map((category) => (
+        {categoryChips.map((category) => (
           <div
             key={category}
             className={`category ${
@@ -22,6 +23,19 @@ export const Videos = () => {
             }
           >
             {category}
+          </div>
+        ))}
+        {dateChips.map((sortByDateChip) => (
+          <div
+            key={sortByDateChip}
+            className={`category ${
+              filterBy.date === sortByDateChip ? "category-active" : ""
+            }`}
+            onClick={(e) =>
+              setFilterBy((prev) => ({ ...prev, date: e.target.innerText }))
+            }
+          >
+            {sortByDateChip}
           </div>
         ))}
       </div>
