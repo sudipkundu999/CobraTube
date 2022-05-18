@@ -9,6 +9,7 @@ import {
 import { Card } from "../../components/card/Card";
 import {
   useAuth,
+  useHistory,
   useLike,
   usePlaylist,
   useVideos,
@@ -21,6 +22,8 @@ export const VideoDetails = () => {
   const { videosId } = useParams();
   const { videosFromDB } = useVideos();
   const video = videosFromDB.find((ele) => ele._id === videosId);
+  const { addToHistory } = useHistory();
+  addToHistory(video);
 
   const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
     useWatchlater();
