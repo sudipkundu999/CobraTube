@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useVideos } from "../../contexts";
+import { useDispatch } from "react-redux/es/exports";
+import { filterByCategory } from "../../features";
 import "./home-hero.css";
 export const HomeHero = () => {
-  const { setFilterBy } = useVideos();
+  const dispatch = useDispatch();
   return (
     <div
       className="hero-section"
@@ -22,7 +23,7 @@ export const HomeHero = () => {
           <Link
             to="/videos"
             onClick={() => {
-              setFilterBy((prev) => ({ ...prev, chips: "All" }));
+              dispatch(filterByCategory("All"));
             }}
           >
             SHOW VIDEOS

@@ -6,7 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import { AuthProvider, PlaylistProvider, VideoProvider } from "./contexts";
+import { AuthProvider, PlaylistProvider } from "./contexts";
 
 // Call make Server
 makeServer();
@@ -16,11 +16,9 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <AuthProvider>
-          <VideoProvider>
-            <PlaylistProvider>
-              <App />
-            </PlaylistProvider>
-          </VideoProvider>
+          <PlaylistProvider>
+            <App />
+          </PlaylistProvider>
         </AuthProvider>
       </BrowserRouter>
     </Provider>

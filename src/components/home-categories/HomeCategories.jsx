@@ -1,9 +1,11 @@
+import { useSelector, useDispatch } from "react-redux/es/exports";
 import { useNavigate } from "react-router-dom";
-import { useVideos } from "../../contexts";
+import { filterByCategory } from "../../features";
 import "./home-categories.css";
 
 export const HomeCategories = () => {
-  const { categoriesFromDB, setFilterBy } = useVideos();
+  const dispatch = useDispatch();
+  const { categoriesFromDB } = useSelector((state) => state.video);
   const navigate = useNavigate();
   return (
     <div className="home-categories">
@@ -20,7 +22,7 @@ export const HomeCategories = () => {
           <div
             className="category-text-wrapper"
             onClick={(e) => {
-              setFilterBy((prev) => ({ ...prev, chips: e.target.innerText }));
+              dispatch(filterByCategory(e.target.innerText));
               navigate("/videos");
               window.scroll(0, 0);
             }}

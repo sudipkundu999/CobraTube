@@ -17,3 +17,9 @@ export {
   addToWatchlater,
   removeFromWatchlater,
 } from "./watchlater/watchlaterSlice";
+export {
+  fetchVideos,
+  fetchCategories,
+  filterByCategory,
+  filterByDate,
+} from "./video/videoSlice";

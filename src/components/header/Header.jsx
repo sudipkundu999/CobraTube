@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux/es/exports";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useVideos } from "../../contexts";
+import { useAuth } from "../../contexts";
 import Select from "react-select";
 import "./header.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
+  fetchCategories,
   fetchHistory,
   fetchLike,
+  fetchVideos,
   fetchWatchlater,
   resetHistory,
   resetLike,
@@ -15,7 +18,7 @@ import {
 
 export const Header = () => {
   const { isUserLoggedIn, userName, logoutHandler } = useAuth();
-  const { videosFromDB } = useVideos();
+  const { videosFromDB } = useSelector((state) => state.video);
 
   const navigate = useNavigate();
   const searchOptions = videosFromDB.map((item) => ({
@@ -35,6 +38,11 @@ export const Header = () => {
       dispatch(resetWatchlater());
     }
   }, [isUserLoggedIn]);
+
+  useEffect(() => {
+    dispatch(fetchVideos());
+    dispatch(fetchCategories());
+  }, []);
 
   return (
     <header>

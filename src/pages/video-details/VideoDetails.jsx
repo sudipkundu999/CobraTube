@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from "react-redux/es/exports";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -9,11 +10,10 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { Card } from "../../components/card/Card";
-import { useAuth, usePlaylist, useVideos } from "../../contexts";
+import { useAuth, usePlaylist } from "../../contexts";
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
-import { useDispatch, useSelector } from "react-redux";
 import {
   addToHistory,
   addToLike,
@@ -25,7 +25,7 @@ import {
 export const VideoDetails = () => {
   const dispatch = useDispatch();
   const { videosId } = useParams();
-  const { videosFromDB } = useVideos();
+  const { videosFromDB } = useSelector((state) => state.video);
   const video = videosFromDB.find((ele) => ele._id === videosId);
   useEffect(() => {
     dispatch(addToHistory(video));
