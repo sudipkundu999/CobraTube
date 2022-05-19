@@ -72,7 +72,7 @@ const likeSlice = createSlice({
   name: "like",
   initialState,
   reducers: {
-    resetCart: (state) => {
+    resetLike: (state) => {
       state.likesToShow = [];
     },
   },
@@ -113,6 +113,6 @@ const likeSlice = createSlice({
   },
 });
 
-export const { resetCart } = likeSlice.actions;
+export const { resetLike } = likeSlice.actions;
 
 export default likeSlice.reducer;

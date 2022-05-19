@@ -8,7 +8,6 @@ import { store } from "./store";
 import { Provider } from "react-redux";
 import {
   AuthProvider,
-  HistoryProvider,
   PlaylistProvider,
   VideoProvider,
   WatchlaterProvider,
@@ -24,11 +23,9 @@ ReactDOM.render(
         <AuthProvider>
           <VideoProvider>
             <WatchlaterProvider>
-              <HistoryProvider>
-                <PlaylistProvider>
-                  <App />
-                </PlaylistProvider>
-              </HistoryProvider>
+              <PlaylistProvider>
+                <App />
+              </PlaylistProvider>
             </WatchlaterProvider>
           </VideoProvider>
         </AuthProvider>

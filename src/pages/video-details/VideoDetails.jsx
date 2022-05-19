@@ -9,27 +9,20 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { Card } from "../../components/card/Card";
-import {
-  useAuth,
-  useHistory,
-  usePlaylist,
-  useVideos,
-  useWatchlater,
-} from "../../contexts";
+import { useAuth, usePlaylist, useVideos, useWatchlater } from "../../contexts";
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addToLike, removeFromLike } from "../../features/like/likeSlice";
+import { addToHistory, addToLike, removeFromLike } from "../../features";
 
 export const VideoDetails = () => {
   const dispatch = useDispatch();
   const { videosId } = useParams();
   const { videosFromDB } = useVideos();
   const video = videosFromDB.find((ele) => ele._id === videosId);
-  const { addToHistory } = useHistory();
   useEffect(() => {
-    addToHistory(video);
+    dispatch(addToHistory(video));
   }, []);
 
   const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =

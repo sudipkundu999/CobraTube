@@ -7,18 +7,13 @@ import {
   MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import {
-  useAuth,
-  useHistory,
-  usePlaylist,
-  useWatchlater,
-} from "../../contexts";
+import { useAuth, usePlaylist, useWatchlater } from "../../contexts";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { notifyDefault } from "../../utils";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addToLike, removeFromLike } from "../../features/like/likeSlice";
+import { addToLike, removeFromHistory, removeFromLike } from "../../features";
 
 export const Card = ({ video }) => {
   const dispatch = useDispatch();
@@ -33,7 +28,6 @@ export const Card = ({ video }) => {
   const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
-  const { removeFromHistory } = useHistory();
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -74,7 +68,7 @@ export const Card = ({ video }) => {
         </div>
         {location.pathname === "/history" ? (
           <div className="remove-from-history-btn">
-            <MdiTrashCan onClick={() => removeFromHistory(video)} />
+            <MdiTrashCan onClick={() => dispatch(removeFromHistory(video))} />
           </div>
         ) : (
           <div

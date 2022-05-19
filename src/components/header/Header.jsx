@@ -4,7 +4,12 @@ import Select from "react-select";
 import "./header.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchLike, resetCart } from "../../features/like/likeSlice";
+import {
+  fetchHistory,
+  fetchLike,
+  resetHistory,
+  resetLike,
+} from "../../features";
 
 export const Header = () => {
   const { isUserLoggedIn, userName, logoutHandler } = useAuth();
@@ -20,8 +25,10 @@ export const Header = () => {
   useEffect(() => {
     if (isUserLoggedIn) {
       dispatch(fetchLike());
+      dispatch(fetchHistory());
     } else {
-      dispatch(resetCart());
+      dispatch(resetLike());
+      dispatch(resetHistory());
     }
   }, [isUserLoggedIn]);
 
