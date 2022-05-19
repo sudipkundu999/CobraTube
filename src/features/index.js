@@ -11,3 +11,9 @@ export {
   removeFromHistory,
   removeAllFromHistory,
 } from "./history/historySlice";
+export {
+  resetWatchlater,
+  fetchWatchlater,
+  addToWatchlater,
+  removeFromWatchlater,
+} from "./watchlater/watchlaterSlice";

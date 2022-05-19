@@ -9,12 +9,18 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { Card } from "../../components/card/Card";
-import { useAuth, usePlaylist, useVideos, useWatchlater } from "../../contexts";
+import { useAuth, usePlaylist, useVideos } from "../../contexts";
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addToHistory, addToLike, removeFromLike } from "../../features";
+import {
+  addToHistory,
+  addToLike,
+  addToWatchlater,
+  removeFromLike,
+  removeFromWatchlater,
+} from "../../features";
 
 export const VideoDetails = () => {
   const dispatch = useDispatch();
@@ -25,8 +31,7 @@ export const VideoDetails = () => {
     dispatch(addToHistory(video));
   }, []);
 
-  const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
-    useWatchlater();
+  const { watchlaterToShow } = useSelector((state) => state.watchlater);
   const isInWatchLater = watchlaterToShow.findIndex(
     (ele) => ele._id === video._id
   );
@@ -105,7 +110,7 @@ export const VideoDetails = () => {
                   {isInWatchLater !== -1 ? (
                     <div
                       className="cta-watchlater-remove"
-                      onClick={() => removeFromWatchlater(video)}
+                      onClick={() => dispatch(removeFromWatchlater(video))}
                     >
                       <WatchLaterIcon />
                     </div>
@@ -113,7 +118,7 @@ export const VideoDetails = () => {
                     <div
                       onClick={() =>
                         isUserLoggedIn
-                          ? addToWatchlater(video)
+                          ? dispatch(addToWatchlater(video))
                           : notLoggedInHandler()
                       }
                     >

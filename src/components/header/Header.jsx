@@ -7,8 +7,10 @@ import { useDispatch } from "react-redux";
 import {
   fetchHistory,
   fetchLike,
+  fetchWatchlater,
   resetHistory,
   resetLike,
+  resetWatchlater,
 } from "../../features";
 
 export const Header = () => {
@@ -26,9 +28,11 @@ export const Header = () => {
     if (isUserLoggedIn) {
       dispatch(fetchLike());
       dispatch(fetchHistory());
+      dispatch(fetchWatchlater());
     } else {
       dispatch(resetLike());
       dispatch(resetHistory());
+      dispatch(resetWatchlater());
     }
   }, [isUserLoggedIn]);
 

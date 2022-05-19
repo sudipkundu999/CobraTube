@@ -7,20 +7,25 @@ import {
   MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import { useAuth, usePlaylist, useWatchlater } from "../../contexts";
+import { useAuth, usePlaylist } from "../../contexts";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { notifyDefault } from "../../utils";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addToLike, removeFromHistory, removeFromLike } from "../../features";
+import {
+  addToLike,
+  addToWatchlater,
+  removeFromHistory,
+  removeFromLike,
+  removeFromWatchlater,
+} from "../../features";
 
 export const Card = ({ video }) => {
   const dispatch = useDispatch();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
-    useWatchlater();
+  const { watchlaterToShow } = useSelector((state) => state.watchlater);
   const isInWatchLater = watchlaterToShow.findIndex(
     (ele) => ele._id === video._id
   );
@@ -105,7 +110,7 @@ export const Card = ({ video }) => {
             {isInWatchLater !== -1 ? (
               <div
                 className="watch-later-remove"
-                onClick={() => removeFromWatchlater(video)}
+                onClick={() => dispatch(removeFromWatchlater(video))}
               >
                 <WatchLaterIcon />
                 Remove from Watch Later
@@ -114,7 +119,9 @@ export const Card = ({ video }) => {
               <div
                 className="watch-later-add"
                 onClick={() =>
-                  isUserLoggedIn ? addToWatchlater(video) : notLoggedInHandler()
+                  isUserLoggedIn
+                    ? dispatch(addToWatchlater(video))
+                    : notLoggedInHandler()
                 }
               >
                 <WatchLaterIcon />
