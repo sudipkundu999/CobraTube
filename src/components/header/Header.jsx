@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useVideos } from "../../contexts";
 import Select from "react-select";
 import "./header.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchLike, resetCart } from "../../features/like/likeSlice";
 
 export const Header = () => {
   const { isUserLoggedIn, userName, logoutHandler } = useAuth();
@@ -12,6 +15,15 @@ export const Header = () => {
     ...item,
     label: item.videoTitle,
   }));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      dispatch(fetchLike());
+    } else {
+      dispatch(resetCart());
+    }
+  }, [isUserLoggedIn]);
 
   return (
     <header>

@@ -7,7 +7,6 @@ import {
   MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import { useLike } from "../../contexts/like-context";
 import {
   useAuth,
   useHistory,
@@ -18,7 +17,11 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { notifyDefault } from "../../utils";
 
+import { useDispatch, useSelector } from "react-redux";
+import { addToLike, removeFromLike } from "../../features/like/likeSlice";
+
 export const Card = ({ video }) => {
+  const dispatch = useDispatch();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
@@ -27,7 +30,7 @@ export const Card = ({ video }) => {
     (ele) => ele._id === video._id
   );
 
-  const { likesToShow, addToLike, removeFromLike } = useLike();
+  const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
   const { removeFromHistory } = useHistory();
@@ -85,11 +88,13 @@ export const Card = ({ video }) => {
         <div className="video-length">{video.videoLength}</div>
         <div className="like-btn">
           {isLikedVideo !== -1 ? (
-            <LikeBtnFilled onClick={() => removeFromLike(video)} />
+            <LikeBtnFilled onClick={() => dispatch(removeFromLike(video))} />
           ) : (
             <LikeBtn
               onClick={() =>
-                isUserLoggedIn ? addToLike(video) : notLoggedInHandler()
+                isUserLoggedIn
+                  ? dispatch(addToLike(video))
+                  : notLoggedInHandler()
               }
             />
           )}

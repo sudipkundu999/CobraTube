@@ -12,7 +12,6 @@ import { Card } from "../../components/card/Card";
 import {
   useAuth,
   useHistory,
-  useLike,
   usePlaylist,
   useVideos,
   useWatchlater,
@@ -20,7 +19,11 @@ import {
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
+import { useDispatch, useSelector } from "react-redux";
+import { addToLike, removeFromLike } from "../../features/like/likeSlice";
+
 export const VideoDetails = () => {
+  const dispatch = useDispatch();
   const { videosId } = useParams();
   const { videosFromDB } = useVideos();
   const video = videosFromDB.find((ele) => ele._id === videosId);
@@ -35,7 +38,7 @@ export const VideoDetails = () => {
     (ele) => ele._id === video._id
   );
 
-  const { likesToShow, addToLike, removeFromLike } = useLike();
+  const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
   const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
@@ -92,11 +95,15 @@ export const VideoDetails = () => {
                 </div>
                 <div>
                   {isLikedVideo !== -1 ? (
-                    <LikeBtnFilled onClick={() => removeFromLike(video)} />
+                    <LikeBtnFilled
+                      onClick={() => dispatch(removeFromLike(video))}
+                    />
                   ) : (
                     <LikeBtn
                       onClick={() =>
-                        isUserLoggedIn ? addToLike(video) : notLoggedInHandler()
+                        isUserLoggedIn
+                          ? dispatch(addToLike(video))
+                          : notLoggedInHandler()
                       }
                     />
                   )}
