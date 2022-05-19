@@ -7,7 +7,7 @@ import {
   MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import { useAuth, usePlaylist } from "../../contexts";
+import { usePlaylist } from "../../contexts";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { notifyDefault } from "../../utils";
@@ -39,7 +39,7 @@ export const Card = ({ video }) => {
 
   const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
 
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const notLoggedInHandler = () => {
     navigate("/login", {
       state: { from: location },

@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -10,7 +10,7 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { Card } from "../../components/card/Card";
-import { useAuth, usePlaylist } from "../../contexts";
+import { usePlaylist } from "../../contexts";
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
@@ -43,7 +43,7 @@ export const VideoDetails = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const notLoggedInHandler = () => {
     navigate("/login", {
       state: { from: location },

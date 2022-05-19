@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAxios } from "../utils";
-import { useAuth } from "./auth-context";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const PlaylistContext = createContext();
 
@@ -26,7 +26,7 @@ const PlaylistProvider = ({ children }) => {
     });
   };
 
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   useEffect(() => {
     isUserLoggedIn ? fetchAllPlaylists() : setPlaylistToShow([]);
   }, [isUserLoggedIn]);

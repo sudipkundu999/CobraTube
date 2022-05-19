@@ -1,10 +1,10 @@
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../../contexts";
 import { notifyDefault } from "../../utils";
 
 export const AuthRoutes = () => {
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   useEffect(
     () => isUserLoggedIn && notifyDefault("You're already logged in!"),
     []

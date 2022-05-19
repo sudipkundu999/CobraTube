@@ -23,3 +23,11 @@ export {
   filterByCategory,
   filterByDate,
 } from "./video/videoSlice";
+export {
+  login,
+  signup,
+  logout,
+  loginAsGuest,
+  verifyUser,
+  setFromData,
+} from "./auth/authSlice";

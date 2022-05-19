@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux/es/exports";
+import { useSelector } from "react-redux";
 import { Card } from "../../components/card/Card";
 import { useDocumentTitle } from "../../utils";
 import "./watch-later.css";

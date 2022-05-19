@@ -1,10 +1,10 @@
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../../contexts";
 import { notifyDefault } from "../../utils";
 
 export const RequiresAuth = () => {
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const location = useLocation();
 
   useEffect(

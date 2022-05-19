@@ -3,6 +3,7 @@ import likeReducer from "./features/like/likeSlice";
 import historyReducer from "./features/history/historySlice";
 import watchlaterReducer from "./features/watchlater/watchlaterSlice";
 import videoReducer from "./features/video/videoSlice";
+import authReducer from "./features/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     history: historyReducer,
     watchlater: watchlaterReducer,
     video: videoReducer,
+    auth: authReducer,
   },
 });

@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from "../../components/card/Card";
 import { filterByCategory, filterByDate } from "../../features";
 import { useDocumentTitle } from "../../utils";

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch } from "react-redux";
 import { filterByCategory } from "../../features";
 import "./home-hero.css";
 export const HomeHero = () => {

@@ -6,7 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import { AuthProvider, PlaylistProvider } from "./contexts";
+import { PlaylistProvider } from "./contexts";
 
 // Call make Server
 makeServer();
@@ -15,11 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AuthProvider>
-          <PlaylistProvider>
-            <App />
-          </PlaylistProvider>
-        </AuthProvider>
+        <PlaylistProvider>
+          <App />
+        </PlaylistProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

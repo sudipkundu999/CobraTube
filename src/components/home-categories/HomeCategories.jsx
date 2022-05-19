@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { filterByCategory } from "../../features";
 import "./home-categories.css";

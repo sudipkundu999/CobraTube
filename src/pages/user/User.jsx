@@ -1,11 +1,11 @@
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useState } from "react";
-import { useAuth } from "../../contexts";
 import { useDocumentTitle } from "../../utils";
 import "./user.css";
 
 export const User = () => {
   useDocumentTitle("User Profile");
-  const { userData } = useAuth();
+  const { userData } = useSelector((state) => state.auth);
   const [togglePass, setTogglePass] = useState(false);
   const togglePassView = () => setTogglePass((x) => !x);
 
