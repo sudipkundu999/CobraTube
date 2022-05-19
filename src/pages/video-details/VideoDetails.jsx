@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 import {
   IcBaselinePlaylistAdd,
   LikeBtn,
@@ -9,6 +11,7 @@ import {
 import { Card } from "../../components/card/Card";
 import {
   useAuth,
+  useHistory,
   useLike,
   usePlaylist,
   useVideos,
@@ -21,6 +24,10 @@ export const VideoDetails = () => {
   const { videosId } = useParams();
   const { videosFromDB } = useVideos();
   const video = videosFromDB.find((ele) => ele._id === videosId);
+  const { addToHistory } = useHistory();
+  useEffect(() => {
+    addToHistory(video);
+  }, []);
 
   const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
     useWatchlater();
@@ -42,6 +49,18 @@ export const VideoDetails = () => {
       replace: true,
     });
     notifyDefault("Please Login to continue");
+  };
+
+  const moreVideos = videosFromDB.filter((video) => video._id !== videosId);
+  const [moreVideosToShow, setMoreVideosToShow] = useState(
+    moreVideos.slice(0, 4)
+  );
+  //This function mocks an API call to load more data on infinite scroll
+  const fetchMoreData = () => {
+    setTimeout(() => {
+      const length = moreVideosToShow.length;
+      setMoreVideosToShow((prev) => [...prev, moreVideos[length]]);
+    }, 500);
   };
 
   return (
@@ -123,13 +142,21 @@ export const VideoDetails = () => {
           </div>
         )}
       </div>
-      <div className="more-videos-wrapper">
+      <div id="more-videos-wrapper">
         <div className="more-videos-heading">More Videos</div>
-        {videosFromDB
-          .filter((video) => video._id !== videosId)
-          .map((video) => (
+        <InfiniteScroll
+          className="infinite-scroll"
+          dataLength={moreVideosToShow.length}
+          next={() => fetchMoreData()}
+          hasMore={moreVideosToShow.length !== moreVideos.length}
+          loader={<h4 className="scroll-message">Loading...</h4>}
+          endMessage={<h4 className="scroll-message">No more videos in DB</h4>}
+          scrollableTarget="more-videos-wrapper"
+        >
+          {moreVideosToShow.map((video) => (
             <Card video={video} key={video._id} />
           ))}
+        </InfiniteScroll>
       </div>
     </main>
   );

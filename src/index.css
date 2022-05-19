@@ -15,17 +15,20 @@ body {
 }
 
 body::-webkit-scrollbar,
-.more-videos-wrapper::-webkit-scrollbar {
+#more-videos-wrapper::-webkit-scrollbar,
+.videos-display-wrapper::-webkit-scrollbar {
   width: 7px;
 }
 
 body::-webkit-scrollbar-track,
-.more-videos-wrapper::-webkit-scrollbar-track {
+#more-videos-wrapper::-webkit-scrollbar-track,
+.videos-display-wrapper::-webkit-scrollbar-track {
   background-color: inherit;
 }
 
 body::-webkit-scrollbar-thumb,
-.more-videos-wrapper::-webkit-scrollbar-thumb {
+#more-videos-wrapper::-webkit-scrollbar-thumb,
+.videos-display-wrapper::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border: 1px solid slategrey;
   border-radius: 10px;

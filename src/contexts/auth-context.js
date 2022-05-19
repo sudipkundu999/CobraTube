@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
       setFormData(initialFromState);
       notifySuccess("Login Successful");
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
-      navigate(location.state?.from?.pathname || "/user");
+      navigate(location.state?.from?.pathname || "/");
     }
   }, [responseLogin]);
   useEffect(
@@ -144,9 +144,6 @@ const AuthProvider = ({ children }) => {
         email: responseVerifyUser.user.email,
         password: responseVerifyUser.user.password,
       });
-      setTimeout(() => {
-        notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
-      }, 1000);
     }
   }, [responseVerifyUser]);
 

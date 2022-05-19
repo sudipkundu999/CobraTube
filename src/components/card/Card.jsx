@@ -30,12 +30,8 @@ export const Card = ({ video }) => {
   const { likesToShow, addToLike, removeFromLike } = useLike();
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
-  const { addToHistory, removeFromHistory } = useHistory();
+  const { removeFromHistory } = useHistory();
   const navigate = useNavigate();
-  const cardClickHandler = (video) => {
-    addToHistory(video);
-    navigate(`/videos/${video._id}`);
-  };
 
   const location = useLocation();
 
@@ -56,7 +52,7 @@ export const Card = ({ video }) => {
         className="img-fluid video-thumbnail-image"
         src={`https://i.ytimg.com/vi/${video._id}/hqdefault.jpg`}
         alt={video.videoTitle}
-        onClick={() => cardClickHandler(video)}
+        onClick={() => navigate(`/videos/${video._id}`)}
       />
       <div className="video-info">
         <img
@@ -65,7 +61,10 @@ export const Card = ({ video }) => {
           alt={video.creatorName}
         />
         <div className="name-wrapper">
-          <div className="video-title" onClick={() => cardClickHandler(video)}>
+          <div
+            className="video-title"
+            onClick={() => navigate(`/videos/${video._id}`)}
+          >
             {video.videoTitle}
           </div>
           <div className="creator-name">{video.creatorName}</div>
