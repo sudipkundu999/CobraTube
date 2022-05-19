@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { usePlaylist } from "../../contexts";
+import { useDispatch } from "react-redux";
+import { addPlaylist } from "../../features";
 
 export const InputFields = ({
   setIsInputVisible,
@@ -9,8 +10,7 @@ export const InputFields = ({
     name: "",
     description: "",
   });
-
-  const { addPlaylist } = usePlaylist();
+  const dispatch = useDispatch();
 
   return (
     <div className="create-playlist-input">
@@ -40,7 +40,12 @@ export const InputFields = ({
         className="btn btn-secondary"
         onClick={() => {
           if (newPlaylistInput.name.trim()) {
-            addPlaylist(newPlaylistInput.name, newPlaylistInput.description);
+            dispatch(
+              addPlaylist({
+                title: newPlaylistInput.name,
+                description: newPlaylistInput.description,
+              })
+            );
             if (fromPlaylistPage) {
               setIsInputVisible(false);
             }

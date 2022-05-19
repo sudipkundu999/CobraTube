@@ -7,7 +7,6 @@ import {
   MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import { usePlaylist } from "../../contexts";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { notifyDefault } from "../../utils";
@@ -19,10 +18,15 @@ import {
   removeFromHistory,
   removeFromLike,
   removeFromWatchlater,
+  setIsPopupVisible,
+  setSelectedVideo,
 } from "../../features";
 
 export const Card = ({ video }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const { watchlaterToShow } = useSelector((state) => state.watchlater);
@@ -32,12 +36,6 @@ export const Card = ({ video }) => {
 
   const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
-
-  const navigate = useNavigate();
-
-  const location = useLocation();
-
-  const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
 
   const { isUserLoggedIn } = useSelector((state) => state.auth);
   const notLoggedInHandler = () => {
@@ -133,8 +131,8 @@ export const Card = ({ video }) => {
             className="playlist"
             onClick={() => {
               if (isUserLoggedIn) {
-                setIsPopupVisible(true);
-                setSelectedVideo(video);
+                dispatch(setIsPopupVisible(true));
+                dispatch(setSelectedVideo(video));
               } else {
                 notLoggedInHandler();
               }

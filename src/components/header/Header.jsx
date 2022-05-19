@@ -4,6 +4,7 @@ import Select from "react-select";
 import "./header.css";
 import { useEffect } from "react";
 import {
+  fetchAllPlaylists,
   fetchCategories,
   fetchHistory,
   fetchLike,
@@ -33,6 +34,7 @@ export const Header = () => {
       dispatch(fetchLike());
       dispatch(fetchHistory());
       dispatch(fetchWatchlater());
+      dispatch(fetchAllPlaylists());
       setTimeout(() => {
         navigate(location.state?.from?.pathname || "/");
       }, 0);

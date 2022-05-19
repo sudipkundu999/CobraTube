@@ -1,16 +1,18 @@
 import "./playlist.css";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDocumentTitle } from "../../utils";
 import { Card } from "../../components/card/Card";
 import { MdiTrashCan } from "../../assets/icons/Icons";
-import { usePlaylist } from "../../contexts/playlist-context";
 import { InputFields } from "../../components/playlist-popup/InputFields";
+import { deletePlaylist } from "../../features";
 
 export const Playlist = () => {
   useDocumentTitle("Playlist");
+  const dispatch = useDispatch();
 
-  const { playlistToShow, deletePlaylist } = usePlaylist();
+  const { playlistToShow } = useSelector((state) => state.playlist);
   const [isInputVisible, setIsInputVisible] = useState(false);
 
   return (
@@ -34,7 +36,7 @@ export const Playlist = () => {
           <div className="playlist-name">
             {playlist.title}
             <div className="delete-playlist-btn">
-              <MdiTrashCan onClick={() => deletePlaylist(playlist)} />
+              <MdiTrashCan onClick={() => dispatch(deletePlaylist(playlist))} />
             </div>
           </div>
           <div className="videos-display-wrapper">

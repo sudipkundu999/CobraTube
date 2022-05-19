@@ -31,3 +31,12 @@ export {
   verifyUser,
   setFromData,
 } from "./auth/authSlice";
+export {
+  fetchAllPlaylists,
+  addPlaylist,
+  deletePlaylist,
+  addVideoToPlaylist,
+  deleteVideoFromPlaylist,
+  setSelectedVideo,
+  setIsPopupVisible,
+} from "./playlist/playlistSlice";

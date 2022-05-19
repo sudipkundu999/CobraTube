@@ -10,7 +10,6 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { Card } from "../../components/card/Card";
-import { usePlaylist } from "../../contexts";
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
@@ -20,6 +19,8 @@ import {
   addToWatchlater,
   removeFromLike,
   removeFromWatchlater,
+  setIsPopupVisible,
+  setSelectedVideo,
 } from "../../features";
 
 export const VideoDetails = () => {
@@ -38,8 +39,6 @@ export const VideoDetails = () => {
 
   const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
-
-  const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -129,8 +128,8 @@ export const VideoDetails = () => {
                 <div
                   onClick={() => {
                     if (isUserLoggedIn) {
-                      setIsPopupVisible(true);
-                      setSelectedVideo(video);
+                      dispatch(setIsPopupVisible(true));
+                      dispatch(setSelectedVideo(video));
                     } else {
                       notLoggedInHandler();
                     }
