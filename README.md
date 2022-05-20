@@ -16,9 +16,9 @@
 
 ## 📕 Table of Contents
 
-- ### [Tech Stack](#-tech-stack)
-- ### [Features](#-features)
-- ### [Instructions to run the app locally](#-instructions-to-run-the-app-locally)
+- [Tech Stack](#-tech-stack)
+- [Features](#-features)
+- [Instructions to run the app locally](#-instructions-to-run-the-app-locally)
 
 ---
 
