@@ -1,4 +1,4 @@
-### [![Netlify Status](https://api.netlify.com/api/v1/badges/157f9f59-0d3b-4b6f-92a9-07ef9b2401a2/deploy-status)](https://app.netlify.com/sites/cobra-tube/deploys)
+### [![Netlify Status](https://api.netlify.com/api/v1/badges/88c7b4e4-4da4-48da-8704-585b3542185f/deploy-status)](https://app.netlify.com/sites/cobra-tube/deploys)
 
 <div align="center">
 
