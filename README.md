@@ -1,10 +1,10 @@
-### [![Netlify Status](https://api.netlify.com/api/v1/badges/157f9f59-0d3b-4b6f-92a9-07ef9b2401a2/deploy-status)](https://app.netlify.com/sites/cobra-tube/deploys)
+### [![Netlify Status](https://api.netlify.com/api/v1/badges/157f9f59-0d3b-4b6f-92a9-07ef9b2401a2/deploy-status)](https://app.netlify.com/sites/cobra-tube-dev/deploys)
 
 <div align="center">
 
 <img alt="logo" src="public\images\logo.png" />
 
-# [CobraTube](https://cobra-tube.netlify.app/)
+# [CobraTube](https://cobra-tube-dev.netlify.app/)
 
 ## CobraTube is an video streaming platform for book lovers.
 
