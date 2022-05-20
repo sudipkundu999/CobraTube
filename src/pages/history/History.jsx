@@ -1,18 +1,20 @@
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from "../../components/card/Card";
-import { useHistory } from "../../contexts";
+import { removeAllFromHistory } from "../../features";
 import { useDocumentTitle } from "../../utils";
 import "./history.css";
 
 export const History = () => {
   useDocumentTitle("History");
-  const { historyToShow, removeAllFromHistory } = useHistory();
+  const dispatch = useDispatch();
+  const { historyToShow } = useSelector((state) => state.history);
 
   return (
     <main className="history-main">
       {historyToShow.length !== 0 && (
         <button
           className="btn btn-secondary"
-          onClick={() => removeAllFromHistory()}
+          onClick={() => dispatch(removeAllFromHistory())}
         >
           Clear History
         </button>

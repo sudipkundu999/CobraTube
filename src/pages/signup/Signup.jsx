@@ -1,17 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { setFromData, signup } from "../../features";
 import { useDocumentTitle } from "../../utils";
 import "./signup.css";
 
 export const Signup = () => {
   useDocumentTitle("Signup");
-  const { formData, setFormData, onSubmitSignup } = useAuth();
+  const dispatch = useDispatch();
+  const { formData } = useSelector((state) => state.auth);
 
   return (
     <main className="login-signup-main">
       <div className="login-container signup-container">
         <h2>Signup</h2>
-        <form onSubmit={(e) => onSubmitSignup(e)} className="login-form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(signup());
+          }}
+          className="login-form"
+        >
           <label>
             First name
             <input
@@ -19,7 +27,9 @@ export const Signup = () => {
               placeholder="Sudip"
               type="text"
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, firstName: e.target.value }))
+                dispatch(
+                  setFromData({ type: "firstName", value: e.target.value })
+                )
               }
               required
             />
@@ -31,7 +41,9 @@ export const Signup = () => {
               placeholder="Kundu"
               type="text"
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, lastName: e.target.value }))
+                dispatch(
+                  setFromData({ type: "lastName", value: e.target.value })
+                )
               }
               required
             />
@@ -44,7 +56,7 @@ export const Signup = () => {
               placeholder="sk@cobratube.com"
               value={formData.email}
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, email: e.target.value }))
+                dispatch(setFromData({ type: "email", value: e.target.value }))
               }
               required
             />
@@ -57,7 +69,9 @@ export const Signup = () => {
               placeholder="********"
               value={formData.password}
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, password: e.target.value }))
+                dispatch(
+                  setFromData({ type: "password", value: e.target.value })
+                )
               }
               required
             />

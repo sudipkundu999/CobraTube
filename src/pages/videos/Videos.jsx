@@ -1,11 +1,33 @@
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from "../../components/card/Card";
-import { useVideos } from "../../contexts/video-context";
+import { filterByCategory, filterByDate } from "../../features";
 import { useDocumentTitle } from "../../utils";
 import "./videos.css";
 
 export const Videos = () => {
+  const dispatch = useDispatch();
   useDocumentTitle("Videos");
-  const { videosToShow, categoriesFromDB, setFilterBy, filterBy } = useVideos();
+  const { videosFromDB, categoriesFromDB, filterBy } = useSelector(
+    (state) => state.video
+  );
+
+  const videosToShow = videosFromDB
+    .filter((video) =>
+      filterBy.category === "All"
+        ? true
+        : video.videoCategory === filterBy.category
+    )
+    .sort((a, b) => {
+      const { day: aDD, month: aMM, year: aYYYY } = a.videoUploadedOn;
+      const { day: bDD, month: bMM, year: bYYYY } = b.videoUploadedOn;
+      const difference = new Date(aYYYY, aMM, aDD) - new Date(bYYYY, bMM, bDD);
+      if (filterBy.date === "Oldest to newest") {
+        return difference;
+      } else if (filterBy.date === "Newest to Oldest") {
+        return -difference;
+      }
+    });
+
   const categoryChips = ["All", ...categoriesFromDB];
   const dateChips = ["Newest to Oldest", "Oldest to newest"];
 
@@ -16,11 +38,9 @@ export const Videos = () => {
           <div
             key={category}
             className={`category ${
-              filterBy.chips === category ? "category-active" : ""
+              filterBy.category === category ? "category-active" : ""
             }`}
-            onClick={(e) =>
-              setFilterBy((prev) => ({ ...prev, chips: e.target.innerText }))
-            }
+            onClick={(e) => dispatch(filterByCategory(e.target.innerText))}
           >
             {category}
           </div>
@@ -31,9 +51,7 @@ export const Videos = () => {
             className={`category ${
               filterBy.date === sortByDateChip ? "category-active" : ""
             }`}
-            onClick={(e) =>
-              setFilterBy((prev) => ({ ...prev, date: e.target.innerText }))
-            }
+            onClick={(e) => dispatch(filterByDate(e.target.innerText))}
           >
             {sortByDateChip}
           </div>

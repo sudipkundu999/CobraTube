@@ -1,11 +1,11 @@
+import { useSelector } from "react-redux";
 import { Card } from "../../components/card/Card";
-import { useLike } from "../../contexts/like-context";
 import { useDocumentTitle } from "../../utils";
 import "./liked.css";
 
 export const Liked = () => {
   useDocumentTitle("Liked");
-  const { likesToShow } = useLike();
+  const { likesToShow } = useSelector((state) => state.like);
 
   return (
     <main className="liked-main ">

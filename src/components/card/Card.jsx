@@ -7,37 +7,37 @@ import {
   MdiTrashCan,
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
-import { useLike } from "../../contexts/like-context";
-import {
-  useAuth,
-  useHistory,
-  usePlaylist,
-  useWatchlater,
-} from "../../contexts";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { notifyDefault } from "../../utils";
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToLike,
+  addToWatchlater,
+  removeFromHistory,
+  removeFromLike,
+  removeFromWatchlater,
+  setIsPopupVisible,
+  setSelectedVideo,
+} from "../../features";
+
 export const Card = ({ video }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
-    useWatchlater();
+  const { watchlaterToShow } = useSelector((state) => state.watchlater);
   const isInWatchLater = watchlaterToShow.findIndex(
     (ele) => ele._id === video._id
   );
 
-  const { likesToShow, addToLike, removeFromLike } = useLike();
+  const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
 
-  const { removeFromHistory } = useHistory();
-  const navigate = useNavigate();
-
-  const location = useLocation();
-
-  const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
-
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const notLoggedInHandler = () => {
     navigate("/login", {
       state: { from: location },
@@ -71,7 +71,7 @@ export const Card = ({ video }) => {
         </div>
         {location.pathname === "/history" ? (
           <div className="remove-from-history-btn">
-            <MdiTrashCan onClick={() => removeFromHistory(video)} />
+            <MdiTrashCan onClick={() => dispatch(removeFromHistory(video))} />
           </div>
         ) : (
           <div
@@ -85,11 +85,13 @@ export const Card = ({ video }) => {
         <div className="video-length">{video.videoLength}</div>
         <div className="like-btn">
           {isLikedVideo !== -1 ? (
-            <LikeBtnFilled onClick={() => removeFromLike(video)} />
+            <LikeBtnFilled onClick={() => dispatch(removeFromLike(video))} />
           ) : (
             <LikeBtn
               onClick={() =>
-                isUserLoggedIn ? addToLike(video) : notLoggedInHandler()
+                isUserLoggedIn
+                  ? dispatch(addToLike(video))
+                  : notLoggedInHandler()
               }
             />
           )}
@@ -106,7 +108,7 @@ export const Card = ({ video }) => {
             {isInWatchLater !== -1 ? (
               <div
                 className="watch-later-remove"
-                onClick={() => removeFromWatchlater(video)}
+                onClick={() => dispatch(removeFromWatchlater(video))}
               >
                 <WatchLaterIcon />
                 Remove from Watch Later
@@ -115,7 +117,9 @@ export const Card = ({ video }) => {
               <div
                 className="watch-later-add"
                 onClick={() =>
-                  isUserLoggedIn ? addToWatchlater(video) : notLoggedInHandler()
+                  isUserLoggedIn
+                    ? dispatch(addToWatchlater(video))
+                    : notLoggedInHandler()
                 }
               >
                 <WatchLaterIcon />
@@ -127,8 +131,8 @@ export const Card = ({ video }) => {
             className="playlist"
             onClick={() => {
               if (isUserLoggedIn) {
-                setIsPopupVisible(true);
-                setSelectedVideo(video);
+                dispatch(setIsPopupVisible(true));
+                dispatch(setSelectedVideo(video));
               } else {
                 notLoggedInHandler();
               }

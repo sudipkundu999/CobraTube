@@ -1,29 +1,32 @@
+import { useDispatch, useSelector } from "react-redux";
 import { IcBaselineClose } from "../../assets/icons/Icons";
-import { usePlaylist } from "../../contexts";
+import {
+  addVideoToPlaylist,
+  deleteVideoFromPlaylist,
+  setIsPopupVisible,
+} from "../../features";
 import { InputFields } from "./InputFields";
 import "./playlist-popup.css";
 
 export const PlaylistPopup = () => {
+  const dispatch = useDispatch();
   const {
     playlistToShow,
-    addVideoToPlaylist,
-    deleteVideoFromPlaylist,
     isPopupVisible,
-    setIsPopupVisible,
     selectedVideo: video,
-  } = usePlaylist();
+  } = useSelector((state) => state.playlist);
 
   return (
     <div
       className={`playlist-popup-container ${
         isPopupVisible ? "popup-visible" : ""
       }`}
-      onClick={() => setIsPopupVisible(false)}
+      onClick={() => dispatch(setIsPopupVisible(false))}
     >
       <div className="playlist-popup" onClick={(e) => e.stopPropagation()}>
         <div
           className="playlist-popup-close-btn"
-          onClick={() => setIsPopupVisible(false)}
+          onClick={() => dispatch(setIsPopupVisible(false))}
         >
           <IcBaselineClose />
         </div>
@@ -36,8 +39,18 @@ export const PlaylistPopup = () => {
                 checked={playlist.videos.some((item) => item._id === video._id)}
                 onChange={(e) =>
                   !e.target.checked
-                    ? deleteVideoFromPlaylist(playlist, video)
-                    : addVideoToPlaylist(playlist, video)
+                    ? dispatch(
+                        deleteVideoFromPlaylist({
+                          playlist: playlist,
+                          video: video,
+                        })
+                      )
+                    : dispatch(
+                        addVideoToPlaylist({
+                          playlist: playlist,
+                          video: video,
+                        })
+                      )
                 }
               />
               {playlist.title}

@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -9,40 +10,39 @@ import {
   WatchLaterIcon,
 } from "../../assets/icons/Icons";
 import { Card } from "../../components/card/Card";
-import {
-  useAuth,
-  useHistory,
-  useLike,
-  usePlaylist,
-  useVideos,
-  useWatchlater,
-} from "../../contexts";
 import { notifyDefault, notifySuccess } from "../../utils";
 import "./video-details.css";
 
+import {
+  addToHistory,
+  addToLike,
+  addToWatchlater,
+  removeFromLike,
+  removeFromWatchlater,
+  setIsPopupVisible,
+  setSelectedVideo,
+} from "../../features";
+
 export const VideoDetails = () => {
+  const dispatch = useDispatch();
   const { videosId } = useParams();
-  const { videosFromDB } = useVideos();
+  const { videosFromDB } = useSelector((state) => state.video);
   const video = videosFromDB.find((ele) => ele._id === videosId);
-  const { addToHistory } = useHistory();
   useEffect(() => {
-    addToHistory(video);
+    dispatch(addToHistory(video));
   }, []);
 
-  const { watchlaterToShow, addToWatchlater, removeFromWatchlater } =
-    useWatchlater();
+  const { watchlaterToShow } = useSelector((state) => state.watchlater);
   const isInWatchLater = watchlaterToShow.findIndex(
     (ele) => ele._id === video._id
   );
 
-  const { likesToShow, addToLike, removeFromLike } = useLike();
+  const { likesToShow } = useSelector((state) => state.like);
   const isLikedVideo = likesToShow.findIndex((ele) => ele._id === video._id);
-
-  const { setIsPopupVisible, setSelectedVideo } = usePlaylist();
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const notLoggedInHandler = () => {
     navigate("/login", {
       state: { from: location },
@@ -92,11 +92,15 @@ export const VideoDetails = () => {
                 </div>
                 <div>
                   {isLikedVideo !== -1 ? (
-                    <LikeBtnFilled onClick={() => removeFromLike(video)} />
+                    <LikeBtnFilled
+                      onClick={() => dispatch(removeFromLike(video))}
+                    />
                   ) : (
                     <LikeBtn
                       onClick={() =>
-                        isUserLoggedIn ? addToLike(video) : notLoggedInHandler()
+                        isUserLoggedIn
+                          ? dispatch(addToLike(video))
+                          : notLoggedInHandler()
                       }
                     />
                   )}
@@ -105,7 +109,7 @@ export const VideoDetails = () => {
                   {isInWatchLater !== -1 ? (
                     <div
                       className="cta-watchlater-remove"
-                      onClick={() => removeFromWatchlater(video)}
+                      onClick={() => dispatch(removeFromWatchlater(video))}
                     >
                       <WatchLaterIcon />
                     </div>
@@ -113,7 +117,7 @@ export const VideoDetails = () => {
                     <div
                       onClick={() =>
                         isUserLoggedIn
-                          ? addToWatchlater(video)
+                          ? dispatch(addToWatchlater(video))
                           : notLoggedInHandler()
                       }
                     >
@@ -124,8 +128,8 @@ export const VideoDetails = () => {
                 <div
                   onClick={() => {
                     if (isUserLoggedIn) {
-                      setIsPopupVisible(true);
-                      setSelectedVideo(video);
+                      dispatch(setIsPopupVisible(true));
+                      dispatch(setSelectedVideo(video));
                     } else {
                       notLoggedInHandler();
                     }

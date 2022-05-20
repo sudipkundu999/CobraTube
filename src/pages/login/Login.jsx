@@ -1,17 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { login, loginAsGuest, setFromData } from "../../features";
 import { useDocumentTitle } from "../../utils";
 import "./login.css";
 
 export const Login = () => {
   useDocumentTitle("Login");
-  const { formData, setFormData, onSubmitLogin, loginAsGuest } = useAuth();
+  const dispatch = useDispatch();
+  const { formData, isUserLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <main className="login-signup-main">
       <div className="login-container">
         <h2>Login</h2>
-        <form onSubmit={(e) => onSubmitLogin(e)} className="login-form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(login());
+          }}
+          className="login-form"
+        >
           <label>
             Email address
             <input
@@ -21,7 +29,7 @@ export const Login = () => {
               placeholder="user@cobratube.com"
               value={formData.email}
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, email: e.target.value }))
+                dispatch(setFromData({ type: "email", value: e.target.value }))
               }
               required
             />
@@ -35,7 +43,9 @@ export const Login = () => {
               placeholder="********"
               value={formData.password}
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, password: e.target.value }))
+                dispatch(
+                  setFromData({ type: "password", value: e.target.value })
+                )
               }
               required
             />
@@ -47,7 +57,7 @@ export const Login = () => {
             </label>
             <div
               className="btn btn-link admin-login"
-              onClick={() => loginAsGuest()}
+              onClick={() => dispatch(loginAsGuest())}
             >
               Login as Guest
             </div>

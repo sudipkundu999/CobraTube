@@ -1,11 +1,11 @@
+import { useSelector } from "react-redux";
 import { Card } from "../../components/card/Card";
-import { useWatchlater } from "../../contexts";
 import { useDocumentTitle } from "../../utils";
 import "./watch-later.css";
 
 export const WatchLater = () => {
   useDocumentTitle("Watch Later");
-  const { watchlaterToShow } = useWatchlater();
+  const { watchlaterToShow } = useSelector((state) => state.watchlater);
 
   return (
     <main className="watchlater-main">
