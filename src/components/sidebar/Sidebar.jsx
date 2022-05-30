@@ -22,12 +22,6 @@ export const Sidebar = () => {
         <BxHome /> <span>Home</span>
       </NavLink>
       <NavLink
-        to="/videos"
-        className={({ isActive }) => (isActive ? "active-nav" : "inactive-nav")}
-      >
-        <SubwayCompass /> <span>Explore</span>
-      </NavLink>
-      <NavLink
         to="/playlist"
         className={({ isActive }) => (isActive ? "active-nav" : "inactive-nav")}
       >

@@ -11,7 +11,6 @@ import {
 } from "./components";
 import {
   History,
-  Homepage,
   Liked,
   Login,
   Page404,
@@ -33,7 +32,7 @@ function App() {
 
       <div className="app">
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Videos />} />
           <Route element={<AuthRoutes />}>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
@@ -45,8 +44,7 @@ function App() {
             <Route path="/playlist" element={<Playlist />} />
             <Route path="/history" element={<History />} />
           </Route>
-          <Route path="/videos" element={<Videos />} />
-          <Route path="/videos/:videosId" element={<VideoDetails />} />
+          <Route path="/:videosId" element={<VideoDetails />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>

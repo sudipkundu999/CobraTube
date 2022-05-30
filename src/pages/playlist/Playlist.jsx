@@ -44,7 +44,7 @@ export const Playlist = () => {
               playlist.videos.map((video, i) => <Card video={video} key={i} />)
             ) : (
               <div className="empty-playlist-text">
-                Add videos from <Link to="/videos">here</Link>!
+                Add videos from <Link to="/">here</Link>!
               </div>
             )}
           </div>
