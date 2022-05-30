@@ -9,6 +9,7 @@ export const WatchLater = () => {
 
   return (
     <main className="watchlater-main">
+      <div className="heading">Watch Later Videos</div>
       <div className="videos-display-wrapper">
         {watchlaterToShow.length === 0
           ? "You haven't added any videos to watch later!"

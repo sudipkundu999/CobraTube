@@ -9,6 +9,7 @@ export const Liked = () => {
 
   return (
     <main className="liked-main ">
+      <div className="heading">Liked Videos</div>
       <div className="videos-display-wrapper">
         {likesToShow.length === 0
           ? "You haven't liked any videos yet!"
