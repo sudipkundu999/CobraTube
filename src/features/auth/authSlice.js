@@ -63,7 +63,7 @@ export const loginAsGuest = createAsyncThunk(
         method: "post",
         url: "/api/auth/login",
         headers: { accept: "*/*" },
-        data: { email: "neog@cobratube.com", password: "neogcamp" },
+        data: { email: "alex@cobratube.com", password: "cobratube" },
       });
       return res.data;
     } catch (error) {
@@ -156,7 +156,7 @@ const authSlice = createSlice({
         firstName: res.firstName,
         lastName: res.lastName,
         email: res.email,
-        password: state.formData.password || "cobrastore",
+        password: state.formData.password || "cobratube",
       };
       state.formData = initialState.formData;
       notifySuccess("Login Successful");
