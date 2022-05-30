@@ -11,6 +11,7 @@ export const History = () => {
 
   return (
     <main className="history-main">
+      <div className="heading">Watch History</div>
       {historyToShow.length !== 0 && (
         <button
           className="btn btn-secondary"

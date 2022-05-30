@@ -52,7 +52,7 @@ export const Card = ({ video }) => {
         className="img-fluid video-thumbnail-image"
         src={`https://i.ytimg.com/vi/${video._id}/hqdefault.jpg`}
         alt={video.videoTitle}
-        onClick={() => navigate(`/videos/${video._id}`)}
+        onClick={() => navigate(`/${video._id}`)}
       />
       <div className="video-info">
         <img
@@ -63,7 +63,7 @@ export const Card = ({ video }) => {
         <div className="name-wrapper">
           <div
             className="video-title"
-            onClick={() => navigate(`/videos/${video._id}`)}
+            onClick={() => navigate(`/${video._id}`)}
           >
             {video.videoTitle}
           </div>

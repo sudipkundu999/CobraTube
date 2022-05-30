@@ -65,9 +65,14 @@ export const Header = () => {
             options={searchOptions}
             isClearable="true"
             placeholder="Search"
-            onChange={(opt) =>
-              opt && navigate(`/videos/${opt?._id}`, { replace: true })
-            }
+            onChange={(opt) => {
+              if (opt) {
+                navigate("/");
+                setTimeout(() => {
+                  navigate(`/${opt?._id}`, { replace: true });
+                }, 0);
+              }
+            }}
           />
         </div>
         <div className="nav-right">
@@ -90,9 +95,14 @@ export const Header = () => {
           options={searchOptions}
           isClearable="true"
           placeholder="Search"
-          onChange={(opt) =>
-            opt && navigate(`/videos/${opt?._id}`, { replace: true })
-          }
+          onChange={(opt) => {
+            if (opt) {
+              navigate("/");
+              setTimeout(() => {
+                navigate(`/${opt?._id}`, { replace: true });
+              }, 0);
+            }
+          }}
         />
       </div>
     </header>
