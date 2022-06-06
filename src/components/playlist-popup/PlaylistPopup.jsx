@@ -36,7 +36,9 @@ export const PlaylistPopup = () => {
             <label className="playlist-list-item" key={index}>
               <input
                 type="checkbox"
-                checked={playlist.videos.some((item) => item._id === video._id)}
+                checked={playlist.videos.some(
+                  (item) => item._id === video?._id
+                )}
                 onChange={(e) =>
                   !e.target.checked
                     ? dispatch(

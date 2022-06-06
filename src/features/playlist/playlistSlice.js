@@ -120,6 +120,9 @@ const playlistSlice = createSlice({
     },
     setIsPopupVisible: (state, action) => {
       state.isPopupVisible = action.payload;
+      if (!action.payload) {
+        state.selectedVideo = null;
+      }
     },
   },
   extraReducers: {

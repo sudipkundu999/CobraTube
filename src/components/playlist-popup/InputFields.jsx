@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPlaylist } from "../../features";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addPlaylist, addVideoToPlaylist } from "../../features";
 
 export const InputFields = ({
   setIsInputVisible,
@@ -11,6 +11,21 @@ export const InputFields = ({
     description: "",
   });
   const dispatch = useDispatch();
+  const { selectedVideo, playlistToShow } = useSelector(
+    (state) => state.playlist
+  );
+
+  useEffect(() => {
+    if (selectedVideo) {
+      const newPlaylist = playlistToShow[playlistToShow.length - 1];
+      dispatch(
+        addVideoToPlaylist({
+          playlist: newPlaylist,
+          video: selectedVideo,
+        })
+      );
+    }
+  }, [playlistToShow.length]);
 
   return (
     <div className="create-playlist-input">
