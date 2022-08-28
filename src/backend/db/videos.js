@@ -119,7 +119,7 @@ export const videos = [
       '"A concise and balanced mix of principles and pragmatics. I loved the tutorial-style game-like program development. This book rekindled my earliest joys of programming. Plus, JavaScript!" —Brendan Eich, creator of JavaScript. Eloquent JavaScript goes beyond the cut-and-paste scripts of the recipe books and teaches you to write code that\'s elegant and effective.',
     creatorName: "Real Tough Candy",
     creatorThumbnail:
-      "https://yt3.ggpht.com/2qlsg5HpUpUOIN5kfvXInE_aWI1hmIU9uIGRdLu8-xyTogHHjjxHe20PWuooKtK9_tTFInRygA=s48-c-k-c0x00ffffff-no-rj",
+      "https://yt3.ggpht.com/Dj9qpWI09-WiJSPmvgGG8h9yDCQwAtsdSSiBKn_DOmmtlZ6n7EsLFRQvwI5FdH9g7vr-mQyE=s68-c-k-c0x00ffffff-no-rj",
   },
   {
     _id: "pHmeJyS2uDM",
