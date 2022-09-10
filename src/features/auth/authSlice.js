@@ -25,7 +25,7 @@ export const login = createAsyncThunk("auth/login", async (_, thunkAPI) => {
   try {
     const res = await axios.request({
       method: "post",
-      url: "/api/auth/login",
+      url: "https://cobratube.herokuapp.com/auth/login",
       headers: { accept: "*/*" },
       data: { email: formData.email, password: formData.password },
     });
@@ -40,7 +40,7 @@ export const signup = createAsyncThunk("auth/signup", async (_, thunkAPI) => {
   try {
     const res = await axios.request({
       method: "post",
-      url: "/api/auth/signup",
+      url: "https://cobratube.herokuapp.com/auth/signup",
       headers: { accept: "*/*" },
       data: {
         firstName: formData.firstName,
@@ -61,9 +61,9 @@ export const loginAsGuest = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "post",
-        url: "/api/auth/login",
+        url: "https://cobratube.herokuapp.com/auth/login",
         headers: { accept: "*/*" },
-        data: { email: "alex@cobratube.com", password: "cobratube" },
+        data: { email: "guest@cobratube.com", password: "cobratube" },
       });
       return res.data;
     } catch (error) {
@@ -78,7 +78,7 @@ export const verifyUser = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "post",
-        url: "/api/auth/verify",
+        url: "https://cobratube.herokuapp.com/auth/verify",
         headers: {
           accept: "*/*",
         },
@@ -195,7 +195,7 @@ const authSlice = createSlice({
     },
     [verifyUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      const res = action.payload.user;
+      const res = action.payload.foundUser;
       state.userName = res.firstName;
       state.isUserLoggedIn = true;
       state.userData = {

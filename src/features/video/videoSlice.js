@@ -14,7 +14,10 @@ export const fetchVideos = createAsyncThunk(
   "video/getVideos",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.request({ method: "get", url: "/api/videos" });
+      const res = await axios.request({
+        method: "get",
+        url: "https://cobratube.herokuapp.com/videos",
+      });
       return res.data.videos;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response);
@@ -28,9 +31,9 @@ export const fetchCategories = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "/api/categories",
+        url: "https://cobratube.herokuapp.com/categories",
       });
-      return res.data.categories.map((obj) => obj.categoryName);
+      return res.data.categories;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response);
     }
