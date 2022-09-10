@@ -50,7 +50,7 @@ export const Card = ({ video }) => {
     <div className="video-card">
       <img
         className="img-fluid video-thumbnail-image"
-        src={`https://i.ytimg.com/vi/${video._id}/hqdefault.jpg`}
+        src={`https://i.ytimg.com/vi/${video.youtubeID}/hqdefault.jpg`}
         alt={video.videoTitle}
         onClick={() => navigate(`/${video._id}`)}
       />
