@@ -1,13 +1,10 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useState } from "react";
 import { useDocumentTitle } from "../../utils";
 import "./user.css";
 
 export const User = () => {
   useDocumentTitle("User Profile");
   const { userData } = useSelector((state) => state.auth);
-  const [togglePass, setTogglePass] = useState(false);
-  const togglePassView = () => setTogglePass((x) => !x);
 
   return (
     <main className="user-main">
@@ -22,24 +19,11 @@ export const User = () => {
             <li>First Name :</li>
             <li>Last Name :</li>
             <li>Email :</li>
-            <li>Password :</li>
           </ul>
           <ul className="list-content">
             <li>{userData.firstName}</li>
             <li>{userData.lastName}</li>
             <li>{userData.email}</li>
-            <li>
-              {togglePass
-                ? userData.password
-                : userData.password.split("").map(() => "*")}
-              <div className="eye-btn">
-                {togglePass ? (
-                  <i className="fas fa-eye-slash" onClick={togglePassView} />
-                ) : (
-                  <i className="fas fa-eye" onClick={togglePassView} />
-                )}
-              </div>
-            </li>
           </ul>
         </div>
       </div>
