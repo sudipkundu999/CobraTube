@@ -13,7 +13,7 @@ export const fetchHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.herokuapp.com/history/",
+        url: "https://cobratube.herokuapp.com/history",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

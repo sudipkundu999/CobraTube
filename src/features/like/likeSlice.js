@@ -13,7 +13,7 @@ export const fetchLike = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.herokuapp.com/likes/",
+        url: "https://cobratube.herokuapp.com/likes",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

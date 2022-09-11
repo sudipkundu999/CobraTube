@@ -13,7 +13,7 @@ export const fetchWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.herokuapp.com/watchlater/",
+        url: "https://cobratube.herokuapp.com/watchlater",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
