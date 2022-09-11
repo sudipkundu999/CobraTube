@@ -33,7 +33,9 @@
 
 ### Backend
 
-- [MockBee](https://mockbee.netlify.app/)
+- [NodeJS](https://nodejs.org/)
+- [ExpressJS](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 ---
 
@@ -61,29 +63,10 @@
 
 ## 🔌 Instructions to run the app locally
 
-- clone the repository on your local machine with the command below in your terminal, and cd into the folder
-
 ```
 git clone https://github.com/sudipkundu999/CobraTube.git
-
 cd CobraTube
-```
-
-- install dependencies
-
-```
 npm install
-```
-
-- create a `.env` file in root directory and create a variable like mentioned below
-
-```
-REACT_APP_JWT_SECRET = <JWT_SECRET_KEY_OF_YOUR_CHOICE>
-```
-
-- start the server
-
-```
 npm start
 ```
 
