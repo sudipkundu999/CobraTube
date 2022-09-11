@@ -13,7 +13,7 @@ export const fetchHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "/api/user/history",
+        url: "https://cobratube.herokuapp.com/history",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -33,12 +33,12 @@ export const addToHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: "/api/user/history",
+        url: `https://cobratube.herokuapp.com/history/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
         },
-        data: { video: video },
+        data: {},
       });
       return res.data.history;
     } catch (error) {
@@ -54,7 +54,7 @@ export const removeFromHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `/api/user/history/${video._id}`,
+        url: `https://cobratube.herokuapp.com/history/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -74,7 +74,7 @@ export const removeAllFromHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `/api/user/history/all`,
+        url: "https://cobratube.herokuapp.com/history/",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

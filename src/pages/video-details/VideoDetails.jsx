@@ -68,7 +68,7 @@ export const VideoDetails = () => {
       <div className="iframe-max-width">
         <div className="iframe-wrapper">
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${videosId}?autoplay=1&mute=1&rel=0&modestbranding=1`}
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeID}?autoplay=1&mute=1&rel=0&modestbranding=1`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -15,7 +15,7 @@ export const fetchAllPlaylists = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "/api/user/playlists",
+        url: "https://cobratube.herokuapp.com/playlists",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -35,7 +35,7 @@ export const addPlaylist = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: "/api/user/playlists",
+        url: "https://cobratube.herokuapp.com/playlists",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -57,7 +57,7 @@ export const deletePlaylist = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `/api/user/playlists/${playlist._id}`,
+        url: `https://cobratube.herokuapp.com/playlists/${playlist._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -77,12 +77,12 @@ export const addVideoToPlaylist = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: `/api/user/playlists/${args.playlist._id}`,
+        url: `https://cobratube.herokuapp.com/playlists/${args.playlist._id}/${args.video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
         },
-        data: { video: args.video },
+        data: {},
       });
       return res.data.playlists;
     } catch (error) {
@@ -97,7 +97,7 @@ export const deleteVideoFromPlaylist = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `/api/user/playlists/${args.playlist._id}/${args.video._id}`,
+        url: `https://cobratube.herokuapp.com/playlists/${args.playlist._id}/${args.video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

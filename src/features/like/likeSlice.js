@@ -13,7 +13,7 @@ export const fetchLike = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "/api/user/likes",
+        url: "https://cobratube.herokuapp.com/likes",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -33,12 +33,12 @@ export const addToLike = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: "/api/user/likes",
+        url: `https://cobratube.herokuapp.com/likes/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
         },
-        data: { video: video },
+        data: {},
       });
       return res.data.likes;
     } catch (error) {
@@ -54,7 +54,7 @@ export const removeFromLike = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `/api/user/likes/${video._id}`,
+        url: `https://cobratube.herokuapp.com/likes/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

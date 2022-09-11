@@ -13,7 +13,7 @@ export const fetchWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "/api/user/watchlater",
+        url: "https://cobratube.herokuapp.com/watchlater",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -33,12 +33,12 @@ export const addToWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: "/api/user/watchlater",
+        url: `https://cobratube.herokuapp.com/watchlater/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
         },
-        data: { video: video },
+        data: {},
       });
       return res.data.watchlater;
     } catch (error) {
@@ -54,7 +54,7 @@ export const removeFromWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `/api/user/watchlater/${video._id}`,
+        url: `https://cobratube.herokuapp.com/watchlater/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
