@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img alt="logo" src="public\images\logo.png" />
+<img alt="logo" src="frontend\public\images\logo.png" />
 
 # [CobraTube](https://cobra-tube.netlify.app/)
 
@@ -18,7 +18,6 @@
 
 - [Tech Stack](#-tech-stack)
 - [Features](#-features)
-- [Instructions to run the app locally](#-instructions-to-run-the-app-locally)
 
 ---
 
@@ -41,8 +40,7 @@
 
 ## 🚀 Features
 
-- Home page
-- Video listing page
+- Landing page
 - Single video page
 - User profile page
 - **Filter** Videos based on _categories_
@@ -52,23 +50,10 @@
 - Add/Remove videos to **watch later**
 - Add/Remove videos to **playlist**
 - **History** of watched videos
-  - Delete a watched video from history
-  - Clear the whole watch history
 - Authentication
 - Loading & alerts
 - Infinite Scroll on single video page
-- Fully Responsive
-
----
-
-## 🔌 Instructions to run the app locally
-
-```
-git clone https://github.com/sudipkundu999/CobraTube.git
-cd CobraTube
-npm install
-npm start
-```
+- Mobile Responsive
 
 ---
 
