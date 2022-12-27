@@ -25,7 +25,7 @@ export const login = createAsyncThunk("auth/login", async (_, thunkAPI) => {
   try {
     const res = await axios.request({
       method: "post",
-      url: "https://cobratube.herokuapp.com/auth/login",
+      url: "https://cobratube.cyclic.app/auth/login",
       headers: { accept: "*/*" },
       data: { email: formData.email, password: formData.password },
     });
@@ -40,7 +40,7 @@ export const signup = createAsyncThunk("auth/signup", async (_, thunkAPI) => {
   try {
     const res = await axios.request({
       method: "post",
-      url: "https://cobratube.herokuapp.com/auth/signup",
+      url: "https://cobratube.cyclic.app/auth/signup",
       headers: { accept: "*/*" },
       data: {
         firstName: formData.firstName,
@@ -61,7 +61,7 @@ export const loginAsGuest = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "post",
-        url: "https://cobratube.herokuapp.com/auth/login",
+        url: "https://cobratube.cyclic.app/auth/login",
         headers: { accept: "*/*" },
         data: { email: "guest@cobratube.com", password: "cobratube" },
       });
@@ -78,7 +78,7 @@ export const verifyUser = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "post",
-        url: "https://cobratube.herokuapp.com/auth/verify",
+        url: "https://cobratube.cyclic.app/auth/verify",
         headers: {
           accept: "*/*",
         },

@@ -16,7 +16,7 @@ export const fetchVideos = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.herokuapp.com/videos",
+        url: "https://cobratube.cyclic.app/videos",
       });
       return res.data.videos;
     } catch (error) {
@@ -31,7 +31,7 @@ export const fetchCategories = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.herokuapp.com/categories",
+        url: "https://cobratube.cyclic.app/categories",
       });
       return res.data.categories;
     } catch (error) {

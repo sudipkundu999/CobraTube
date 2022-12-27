@@ -13,7 +13,7 @@ export const fetchWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.herokuapp.com/watchlater",
+        url: "https://cobratube.cyclic.app/watchlater",
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -33,7 +33,7 @@ export const addToWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: `https://cobratube.herokuapp.com/watchlater/${video._id}`,
+        url: `https://cobratube.cyclic.app/watchlater/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -54,7 +54,7 @@ export const removeFromWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `https://cobratube.herokuapp.com/watchlater/${video._id}`,
+        url: `https://cobratube.cyclic.app/watchlater/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
