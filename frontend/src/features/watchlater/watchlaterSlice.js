@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { notifyError } from "../../utils";
 import axios from "axios";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const initialState = {
   watchlaterToShow: [],
   isLoading: false,
@@ -13,7 +15,7 @@ export const fetchWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.cyclic.app/watchlater",
+        url: `${BACKEND_URL}/watchlater`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -33,7 +35,7 @@ export const addToWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: `https://cobratube.cyclic.app/watchlater/${video._id}`,
+        url: `${BACKEND_URL}/watchlater/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -54,7 +56,7 @@ export const removeFromWatchlater = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `https://cobratube.cyclic.app/watchlater/${video._id}`,
+        url: `${BACKEND_URL}/watchlater/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

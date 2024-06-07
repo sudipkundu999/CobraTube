@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { notifyError, notifySuccess } from "../../utils";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const initialState = {
   isUserLoggedIn: false,
   userName: "Login",
@@ -25,7 +27,7 @@ export const login = createAsyncThunk("auth/login", async (_, thunkAPI) => {
   try {
     const res = await axios.request({
       method: "post",
-      url: "https://cobratube.cyclic.app/auth/login",
+      url: `${BACKEND_URL}/auth/login`,
       headers: { accept: "*/*" },
       data: { email: formData.email, password: formData.password },
     });
@@ -40,7 +42,7 @@ export const signup = createAsyncThunk("auth/signup", async (_, thunkAPI) => {
   try {
     const res = await axios.request({
       method: "post",
-      url: "https://cobratube.cyclic.app/auth/signup",
+      url: `${BACKEND_URL}/auth/signup`,
       headers: { accept: "*/*" },
       data: {
         firstName: formData.firstName,
@@ -61,7 +63,7 @@ export const loginAsGuest = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "post",
-        url: "https://cobratube.cyclic.app/auth/login",
+        url: `${BACKEND_URL}/auth/login`,
         headers: { accept: "*/*" },
         data: { email: "guest@cobratube.com", password: "cobratube" },
       });
@@ -78,7 +80,7 @@ export const verifyUser = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "post",
-        url: "https://cobratube.cyclic.app/auth/verify",
+        url: `${BACKEND_URL}/auth/verify`,
         headers: {
           accept: "*/*",
         },

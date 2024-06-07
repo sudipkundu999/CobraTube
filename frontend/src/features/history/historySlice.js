@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { notifyError } from "../../utils";
 import axios from "axios";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const initialState = {
   historyToShow: [],
   isLoading: false,
@@ -13,7 +15,7 @@ export const fetchHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.cyclic.app/history",
+        url: `${BACKEND_URL}/history`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -33,7 +35,7 @@ export const addToHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "POST",
-        url: `https://cobratube.cyclic.app/history/${video._id}`,
+        url: `${BACKEND_URL}/history/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -54,7 +56,7 @@ export const removeFromHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: `https://cobratube.cyclic.app/history/${video._id}`,
+        url: `${BACKEND_URL}/history/${video._id}`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),
@@ -74,7 +76,7 @@ export const removeAllFromHistory = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "DELETE",
-        url: "https://cobratube.cyclic.app/history/",
+        url: `${BACKEND_URL}/history/`,
         headers: {
           accept: "*/*",
           authorization: localStorage.getItem("cobraToken"),

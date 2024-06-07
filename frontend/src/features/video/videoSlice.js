@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { notifyError } from "../../utils";
 import axios from "axios";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const initialState = {
   videosFromDB: [],
   isVideoLoading: false,
@@ -16,7 +18,7 @@ export const fetchVideos = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.cyclic.app/videos",
+        url: `${BACKEND_URL}/videos`,
       });
       return res.data.videos;
     } catch (error) {
@@ -31,7 +33,7 @@ export const fetchCategories = createAsyncThunk(
     try {
       const res = await axios.request({
         method: "get",
-        url: "https://cobratube.cyclic.app/categories",
+        url: `${BACKEND_URL}/categories`,
       });
       return res.data.categories;
     } catch (error) {
